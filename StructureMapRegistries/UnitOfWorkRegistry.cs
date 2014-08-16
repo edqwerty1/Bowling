@@ -15,8 +15,8 @@ namespace StructureMapRegistries
       /// </summary>
       public UnitOfWorkRegistry()
       {
-         For<IUnitOfWorkFactory>().Use<EFUnitOfWorkFactory>();
-         For<IUnitOfWork>().Use<EFUnitOfWork>();
+         For<IUnitOfWorkFactory>().Use<UnitOfWorkFactory>();
+         For(typeof(IUnitOfWork<>)).Use(typeof(UnitOfWork<>));
       }
    }
 }

@@ -18,9 +18,9 @@ namespace Bowling.Services.Implementation
       //   this.teamService = teamService;
       }
 
-      public IQueryable<Bowler> GetBowlers()
+      public async Task< IEnumerable<Bowler>> GetBowlersAsync()
       { 
-         return bowlers.GetAll();
+         return await bowlers.GetAllAsync();
       }
 
       //public IQueryable<Match> GetMatchesForDate(DateTime date)

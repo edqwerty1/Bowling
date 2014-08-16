@@ -8,3 +8,8 @@ G:\Bowling\Bowling.Core\bin\Debug\Bowling.Core.pdb
 G:\Bowling\Bowling.Core\obj\Debug\Bowling.Core.csprojResolveAssemblyReference.cache
 G:\Bowling\Bowling.Core\obj\Debug\Bowling.Core.dll
 G:\Bowling\Bowling.Core\obj\Debug\Bowling.Core.pdb
+C:\Users\EdUser\Documents\GitHub\Bowling\Bowling.Core\bin\Debug\Bowling.Core.dll
+C:\Users\EdUser\Documents\GitHub\Bowling\Bowling.Core\bin\Debug\Bowling.Core.pdb
+C:\Users\EdUser\Documents\GitHub\Bowling\Bowling.Core\obj\Debug\Bowling.Core.csprojResolveAssemblyReference.cache
+C:\Users\EdUser\Documents\GitHub\Bowling\Bowling.Core\obj\Debug\Bowling.Core.dll
+C:\Users\EdUser\Documents\GitHub\Bowling\Bowling.Core\obj\Debug\Bowling.Core.pdb

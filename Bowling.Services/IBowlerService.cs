@@ -1,12 +1,14 @@
 ﻿using Bowling.Domain.Entities;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Bowling.Services
 {
    public interface IBowlerService
    {
-       IQueryable<Bowler> GetBowlers();
+       Task<IEnumerable<Bowler>> GetBowlersAsync();
       //IQueryable<Match> GetMatches();
       //IQueryable<Match> GetMatchesForDate(DateTime date);
       //int AddGoal(int matchId, int team, bool penalty = false);

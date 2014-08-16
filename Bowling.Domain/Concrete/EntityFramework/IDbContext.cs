@@ -23,15 +23,6 @@ namespace Bowling.Domain.Concrete.EntityFramework
       DbSet<TEntity> Set<TEntity>() where TEntity : class;
 
       /// <summary>
-      /// This obtains an update lock on a given row by ID, or waits until it can get one (or times out).
-      /// </summary>
-      /// <param name="id">Id of entity to lock</param>
-      /// <param name="table">Table to get the lock on</param>
-      /// <param name="entType">Type of the entity being locked</param>
-      /// <returns></returns>
-      void Lock(int id, string table, Type entType);
-
-      /// <summary>
       /// This refreshes the contents of a given object from the database.
       /// </summary>
       /// <param name="entity">Object to be refreshed</param>

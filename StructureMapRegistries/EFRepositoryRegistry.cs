@@ -20,9 +20,9 @@ namespace Bowling.Domain.Concrete.EntityFramework
       public EFRepositoryRegistry(Func<string> getConnectionString)
       {
 
-         For<IUnitOfWorkFactory>().Use<EFUnitOfWorkFactory>();
-         For(typeof(IRepository<>)).Use(typeof(EFRepository<>));
-         For(typeof(IUnitOfWork)).Use(typeof(EFUnitOfWork));
+         For<IUnitOfWorkFactory>().Use<UnitOfWorkFactory>();
+         For(typeof(IRepository<>)).Use(typeof(Repository<>));
+         //For(typeof(IUnitOfWork)).Use(typeof(UnitOfWork));
 
          //Pass the InsightDB connection string text in rather than using letting EntityFramework used the named version 
          //as it overrides the caching provider with the System.Data.SqlClient provider

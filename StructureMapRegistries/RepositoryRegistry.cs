@@ -19,7 +19,7 @@ namespace StructureMapRegistries
       /// </summary>
       public RepositoryRegistry()
       {
-         For(typeof(IRepository<>)).Use(typeof(EFRepository<>));
+         For(typeof(IRepository<>)).Use(typeof(Repository<>));
 
       }
    }

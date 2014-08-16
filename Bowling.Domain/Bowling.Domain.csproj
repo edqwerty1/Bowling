@@ -30,11 +30,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Bowling\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Bowling\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation">
       <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
@@ -43,14 +45,17 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
-    <Reference Include="StructureMap">
-      <HintPath>..\packages\structuremap.3.0.3.116\lib\net40\StructureMap.dll</HintPath>
+    <Reference Include="StructureMap, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Bowling\packages\structuremap.3.1.0.133\lib\net40\StructureMap.dll</HintPath>
     </Reference>
-    <Reference Include="StructureMap.Net4">
-      <HintPath>..\packages\structuremap.3.0.3.116\lib\net40\StructureMap.Net4.dll</HintPath>
+    <Reference Include="StructureMap.Net4, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Bowling\packages\structuremap.3.1.0.133\lib\net40\StructureMap.Net4.dll</HintPath>
     </Reference>
-    <Reference Include="StructureMap.Web">
-      <HintPath>..\packages\structuremap.web.3.0.0.108\lib\net40\StructureMap.Web.dll</HintPath>
+    <Reference Include="StructureMap.Web, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Bowling\packages\structuremap.web.3.1.0.133\lib\net40\StructureMap.Web.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -67,10 +72,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstract\IRepository.cs" />
-    <Compile Include="Abstract\IUnitOfWork.cs" />
+    <Compile Include="Abstract\IReadOnlyRepositoryContract{T}.cs" />
+    <Compile Include="Abstract\IReadOnlyRepository{T}.cs" />
+    <Compile Include="Abstract\IRepositoryContract{T}.cs" />
+    <Compile Include="Abstract\IRepositoryExtensions.cs" />
+    <Compile Include="Abstract\IRepository{T}.cs" />
+    <Compile Include="Abstract\ISpecificationContractT.cs" />
+    <Compile Include="Abstract\ISpecificationExtensions.cs" />
+    <Compile Include="Abstract\ISpecificationT.cs" />
+    <Compile Include="Abstract\IUnitOfWorkExtensions.cs" />
+    <Compile Include="Abstract\IUnitOfWorkFactoryContract.cs" />
+    <Compile Include="Abstract\IUnitOfWorkFactoryProvider.cs" />
+    <Compile Include="Abstract\IUnitOfWorkFactoryProviderContract.cs" />
+    <Compile Include="Abstract\IUnitOfWork{T}.cs" />
+    <Compile Include="Abstract\IUnitOfWorkContract{T}.cs" />
     <Compile Include="Abstract\IUnitOfWorkFactory.cs" />
-    <Compile Include="Abstract\UnitOfWork.cs" />
     <Compile Include="Concrete\EntityFramework\BaseContext.cs" />
     <Compile Include="Concrete\EntityFramework\BaseEntityMap.cs" />
     <Compile Include="Concrete\EntityFramework\DataContext.cs" />
@@ -78,12 +94,24 @@
     <Compile Include="Concrete\EntityFramework\EFUnitOfWork.cs" />
     <Compile Include="Concrete\EntityFramework\EFUnitOfWorkFactory.cs" />
     <Compile Include="Concrete\EntityFramework\IDbContext.cs" />
+    <Compile Include="Concrete\EntityFramework\LogicalAndSpecificationT.cs" />
+    <Compile Include="Concrete\EntityFramework\LogicalNotSpecificationT.cs" />
+    <Compile Include="Concrete\EntityFramework\LogicalOrSpecificationT.cs" />
     <Compile Include="Concrete\EntityFramework\Mapping\AttendeeMap.cs" />
     <Compile Include="Concrete\EntityFramework\Mapping\BowlerMap.cs" />
     <Compile Include="Concrete\EntityFramework\Mapping\EventMap.cs" />
     <Compile Include="Concrete\EntityFramework\Mapping\FoodOptionMap.cs" />
     <Compile Include="Concrete\EntityFramework\Mapping\ResultMap.cs" />
     <Compile Include="Concrete\EntityFramework\Mapping\RoundMap.cs" />
+    <Compile Include="Concrete\EntityFramework\PagedCollection{T}.cs" />
+    <Compile Include="Concrete\EntityFramework\Repository{T}.cs" />
+    <Compile Include="Concrete\EntityFramework\SpecificationBaseT.cs" />
+    <Compile Include="Concrete\EntityFramework\SpecificationT.cs" />
+    <Compile Include="Concrete\EntityFramework\UnitOfWork.cs" />
+    <Compile Include="Concrete\EntityFramework\UnitOfWorkContractT.cs" />
+    <Compile Include="Concrete\EntityFramework\UnitOfWorkFactory.cs" />
+    <Compile Include="Concrete\EntityFramework\UnitOfWorkFactoryProvider.cs" />
+    <Compile Include="Concrete\EntityFramework\UnitOfWorkT.cs" />
     <Compile Include="Entities\Attendee.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\Bowler.cs" />

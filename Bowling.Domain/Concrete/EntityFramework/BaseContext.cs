@@ -5,7 +5,6 @@ using System.Data.Entity.ModelConfiguration;
 using System.Linq;
 using System.Reflection;
 using Bowling.Domain.Entities;
-using Bowling.Domain.Abstract;
 using Bowling.Core;
 using System.Data.Entity.Validation;
 namespace Bowling.Domain.Concrete.EntityFramework
@@ -100,21 +99,6 @@ namespace Bowling.Domain.Concrete.EntityFramework
          //If the schema has been defined, set the default schema
          if (!String.IsNullOrEmpty(Schema))
             modelBuilder.HasDefaultSchema(Schema);
-      }
-
-      /// <summary>
-      /// This obtains an update lock on a given row by ID, or waits until it can get one (or times out).
-      /// </summary>
-      /// <param name="id">Row id to lock</param>
-      /// <param name="table">Table to update the lock on</param>
-      /// <param name="entType">Type of the entity being locked</param>
-      public void Lock(int id, string table, Type entType)
-      {
-         // SQL Server specific
-
-         string query = "SELECT * FROM [" + Database.Connection.Database + "].[dbo].[" + table + "] WITH (ROWLOCK,UPDLOCK) WHERE Id = " + id.ToString();
-         int temp = Database.ExecuteSqlCommand(query);
-         UnitOfWork.Current.AddToLockTable(entType, id);
       }
 
       /// <summary>
