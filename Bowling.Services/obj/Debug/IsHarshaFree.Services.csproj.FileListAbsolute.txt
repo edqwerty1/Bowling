@@ -1,0 +1,13 @@
+D:\TestProjects\IsHarshaFree\IsHarshaFree.Services\bin\Debug\IsHarshaFree.Services.dll
+D:\TestProjects\IsHarshaFree\IsHarshaFree.Services\bin\Debug\IsHarshaFree.Services.pdb
+D:\TestProjects\IsHarshaFree\IsHarshaFree.Services\obj\Debug\IsHarshaFree.Services.csprojResolveAssemblyReference.cache
+D:\TestProjects\IsHarshaFree\IsHarshaFree.Services\obj\Debug\IsHarshaFree.Services.dll
+D:\TestProjects\IsHarshaFree\IsHarshaFree.Services\obj\Debug\IsHarshaFree.Services.pdb
+D:\TestProjects\IsHarshaFree\IsHarshaFree.Services\bin\Debug\IsHarshaFree.Domain.dll
+D:\TestProjects\IsHarshaFree\IsHarshaFree.Services\bin\Debug\EntityFramework.dll
+D:\TestProjects\IsHarshaFree\IsHarshaFree.Services\bin\Debug\StructureMap.dll
+D:\TestProjects\IsHarshaFree\IsHarshaFree.Services\bin\Debug\IsHarshaFree.Core.dll
+D:\TestProjects\IsHarshaFree\IsHarshaFree.Services\bin\Debug\IsHarshaFree.Domain.pdb
+D:\TestProjects\IsHarshaFree\IsHarshaFree.Services\bin\Debug\EntityFramework.xml
+D:\TestProjects\IsHarshaFree\IsHarshaFree.Services\bin\Debug\StructureMap.pdb
+D:\TestProjects\IsHarshaFree\IsHarshaFree.Services\bin\Debug\IsHarshaFree.Core.pdb

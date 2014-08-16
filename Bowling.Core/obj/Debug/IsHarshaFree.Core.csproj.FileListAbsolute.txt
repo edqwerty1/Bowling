@@ -1,0 +1,5 @@
+D:\TestProjects\IsHarshaFree\IsHarshaFree.Core\bin\Debug\IsHarshaFree.Core.dll
+D:\TestProjects\IsHarshaFree\IsHarshaFree.Core\bin\Debug\IsHarshaFree.Core.pdb
+D:\TestProjects\IsHarshaFree\IsHarshaFree.Core\obj\Debug\IsHarshaFree.Core.csprojResolveAssemblyReference.cache
+D:\TestProjects\IsHarshaFree\IsHarshaFree.Core\obj\Debug\IsHarshaFree.Core.dll
+D:\TestProjects\IsHarshaFree\IsHarshaFree.Core\obj\Debug\IsHarshaFree.Core.pdb

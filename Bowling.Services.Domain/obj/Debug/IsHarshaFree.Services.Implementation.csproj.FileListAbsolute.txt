@@ -1,0 +1,15 @@
+D:\TestProjects\IsHarshaFree\IsHarshaFree.Services.Harsha\bin\Debug\IsHarshaFree.Services.Harsha.dll
+D:\TestProjects\IsHarshaFree\IsHarshaFree.Services.Harsha\bin\Debug\IsHarshaFree.Services.Harsha.pdb
+D:\TestProjects\IsHarshaFree\IsHarshaFree.Services.Harsha\bin\Debug\IsHarshaFree.Domain.dll
+D:\TestProjects\IsHarshaFree\IsHarshaFree.Services.Harsha\bin\Debug\IsHarshaFree.Services.dll
+D:\TestProjects\IsHarshaFree\IsHarshaFree.Services.Harsha\bin\Debug\EntityFramework.dll
+D:\TestProjects\IsHarshaFree\IsHarshaFree.Services.Harsha\bin\Debug\StructureMap.dll
+D:\TestProjects\IsHarshaFree\IsHarshaFree.Services.Harsha\bin\Debug\IsHarshaFree.Core.dll
+D:\TestProjects\IsHarshaFree\IsHarshaFree.Services.Harsha\bin\Debug\IsHarshaFree.Domain.pdb
+D:\TestProjects\IsHarshaFree\IsHarshaFree.Services.Harsha\bin\Debug\IsHarshaFree.Services.pdb
+D:\TestProjects\IsHarshaFree\IsHarshaFree.Services.Harsha\bin\Debug\EntityFramework.xml
+D:\TestProjects\IsHarshaFree\IsHarshaFree.Services.Harsha\bin\Debug\StructureMap.pdb
+D:\TestProjects\IsHarshaFree\IsHarshaFree.Services.Harsha\bin\Debug\IsHarshaFree.Core.pdb
+D:\TestProjects\IsHarshaFree\IsHarshaFree.Services.Harsha\obj\Debug\IsHarshaFree.Services.Implementation.csprojResolveAssemblyReference.cache
+D:\TestProjects\IsHarshaFree\IsHarshaFree.Services.Harsha\obj\Debug\IsHarshaFree.Services.Harsha.dll
+D:\TestProjects\IsHarshaFree\IsHarshaFree.Services.Harsha\obj\Debug\IsHarshaFree.Services.Harsha.pdb

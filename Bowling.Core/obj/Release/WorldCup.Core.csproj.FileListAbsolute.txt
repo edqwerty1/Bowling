@@ -1,0 +1,5 @@
+D:\TestProjects\WorldCup\IsHarshaFree.Core\bin\Release\IsHarshaFree.Core.dll
+D:\TestProjects\WorldCup\IsHarshaFree.Core\bin\Release\IsHarshaFree.Core.pdb
+D:\TestProjects\WorldCup\IsHarshaFree.Core\obj\Release\WorldCup.Core.csprojResolveAssemblyReference.cache
+D:\TestProjects\WorldCup\IsHarshaFree.Core\obj\Release\IsHarshaFree.Core.dll
+D:\TestProjects\WorldCup\IsHarshaFree.Core\obj\Release\IsHarshaFree.Core.pdb

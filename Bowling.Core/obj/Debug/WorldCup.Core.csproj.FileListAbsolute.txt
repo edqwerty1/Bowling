@@ -1,0 +1,4 @@
+D:\TestProjects\WorldCup\IsHarshaFree.Core\bin\Debug\IsHarshaFree.Core.dll
+D:\TestProjects\WorldCup\IsHarshaFree.Core\bin\Debug\IsHarshaFree.Core.pdb
+D:\TestProjects\WorldCup\IsHarshaFree.Core\obj\Debug\IsHarshaFree.Core.dll
+D:\TestProjects\WorldCup\IsHarshaFree.Core\obj\Debug\IsHarshaFree.Core.pdb

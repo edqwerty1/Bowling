@@ -1,0 +1,10 @@
+G:\project2\Bowling.Core\bin\Debug\Bowling.Core.dll
+G:\project2\Bowling.Core\bin\Debug\Bowling.Core.pdb
+G:\project2\Bowling.Core\obj\Debug\Bowling.Core.csprojResolveAssemblyReference.cache
+G:\project2\Bowling.Core\obj\Debug\Bowling.Core.dll
+G:\project2\Bowling.Core\obj\Debug\Bowling.Core.pdb
+G:\Bowling\Bowling.Core\bin\Debug\Bowling.Core.dll
+G:\Bowling\Bowling.Core\bin\Debug\Bowling.Core.pdb
+G:\Bowling\Bowling.Core\obj\Debug\Bowling.Core.csprojResolveAssemblyReference.cache
+G:\Bowling\Bowling.Core\obj\Debug\Bowling.Core.dll
+G:\Bowling\Bowling.Core\obj\Debug\Bowling.Core.pdb

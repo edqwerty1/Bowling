@@ -1,0 +1,4 @@
+D:\TestProjects\IsHarshaFree\IsHarshaFree.Core\bin\Release\IsHarshaFree.Core.dll
+D:\TestProjects\IsHarshaFree\IsHarshaFree.Core\bin\Release\IsHarshaFree.Core.pdb
+D:\TestProjects\IsHarshaFree\IsHarshaFree.Core\obj\Release\IsHarshaFree.Core.dll
+D:\TestProjects\IsHarshaFree\IsHarshaFree.Core\obj\Release\IsHarshaFree.Core.pdb
