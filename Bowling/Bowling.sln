@@ -11,15 +11,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{F2
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{9538499F-2353-4325-9D99-F2A97EEB9BCD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowling.Services", "..\Bowling.Services\Bowling.Services.csproj", "{2E86FC57-0FF6-46E7-A7AC-419EE0CC4829}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowling.Services", "Bowling.Services\Bowling.Services.csproj", "{2E86FC57-0FF6-46E7-A7AC-419EE0CC4829}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowling.Services.Implementation", "..\Bowling.Services.Domain\Bowling.Services.Implementation.csproj", "{993481D9-C30A-4D53-865B-D68D27A87EC4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowling.Services.Implementation", "Bowling.Services.Domain\Bowling.Services.Implementation.csproj", "{993481D9-C30A-4D53-865B-D68D27A87EC4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowling.StructureMapRegistries", "..\StructureMapRegistries\Bowling.StructureMapRegistries.csproj", "{3491DA40-31E3-46EA-9637-3A2F51A4B016}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowling.Core", "Bowling.Core\Bowling.Core.csproj", "{73257966-155F-4BE8-93EE-612CECF996F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowling.Domain", "..\Bowling.Domain\Bowling.Domain.csproj", "{84CA4A73-6A8E-4AC8-9039-7BEEAE9940A2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowling.Domain", "Bowling.Domain\Bowling.Domain.csproj", "{84CA4A73-6A8E-4AC8-9039-7BEEAE9940A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowling.Core", "..\Bowling.Core\Bowling.Core.csproj", "{73257966-155F-4BE8-93EE-612CECF996F7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowling.StructureMapRegistries", "StructureMapRegistries\Bowling.StructureMapRegistries.csproj", "{3491DA40-31E3-46EA-9637-3A2F51A4B016}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,18 +43,18 @@ Global
 		{993481D9-C30A-4D53-865B-D68D27A87EC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{993481D9-C30A-4D53-865B-D68D27A87EC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{993481D9-C30A-4D53-865B-D68D27A87EC4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3491DA40-31E3-46EA-9637-3A2F51A4B016}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3491DA40-31E3-46EA-9637-3A2F51A4B016}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3491DA40-31E3-46EA-9637-3A2F51A4B016}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3491DA40-31E3-46EA-9637-3A2F51A4B016}.Release|Any CPU.Build.0 = Release|Any CPU
-		{84CA4A73-6A8E-4AC8-9039-7BEEAE9940A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{84CA4A73-6A8E-4AC8-9039-7BEEAE9940A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{84CA4A73-6A8E-4AC8-9039-7BEEAE9940A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{84CA4A73-6A8E-4AC8-9039-7BEEAE9940A2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{73257966-155F-4BE8-93EE-612CECF996F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{73257966-155F-4BE8-93EE-612CECF996F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{73257966-155F-4BE8-93EE-612CECF996F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{73257966-155F-4BE8-93EE-612CECF996F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84CA4A73-6A8E-4AC8-9039-7BEEAE9940A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84CA4A73-6A8E-4AC8-9039-7BEEAE9940A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84CA4A73-6A8E-4AC8-9039-7BEEAE9940A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84CA4A73-6A8E-4AC8-9039-7BEEAE9940A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3491DA40-31E3-46EA-9637-3A2F51A4B016}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3491DA40-31E3-46EA-9637-3A2F51A4B016}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3491DA40-31E3-46EA-9637-3A2F51A4B016}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3491DA40-31E3-46EA-9637-3A2F51A4B016}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

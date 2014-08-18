@@ -1,0 +1,1452 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Bowling.Domain</name>
+    </assembly>
+    <members>
+        <member name="T:Bowling.Domain.Abstract.IReadOnlyRepository`1">
+            <summary>
+            Defines the behavior of a read-only repository of items.
+            </summary>
+            <typeparam name="T">The <see cref="T:System.Type">type</see> of item in the repository.</typeparam>
+        </member>
+        <member name="M:Bowling.Domain.Abstract.IReadOnlyRepository`1.GetAsync(System.Func{System.Linq.IQueryable{`0},System.Linq.IQueryable{`0}},System.Threading.CancellationToken)">
+            <summary>
+            Retrieves all items in the repository satisfied by the specified query asynchronously.
+            </summary>
+            <param name="queryShaper">The <see cref="T:System.Func`2">function</see> that shapes the <see cref="T:System.Linq.IQueryable`1">query</see> to execute.</param>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken">cancellation token</see> that can be used to cancel the operation.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1">task</see> containing the retrieved <see cref="T:System.Collections.Generic.IEnumerable`1">sequence</see>
+            of <typeparamref name="T">items</typeparamref>.</returns>
+            <example>The following example demonstrates how to paginate the items in a repository using an example query.
+            <code><![CDATA[
+            using Microsoft.DesignPatterns.Examples;
+            using System;
+            using System.Collections.Generic;
+            using System.Linq;
+            using System.Threading;
+            using System.Threading.Tasks;
+            
+            public async static void Main()
+            {
+                var index = 0;
+                var repository = new MyRepository();
+                var cancellationToken = new CancellationToken();
+                
+                foreach ( var item in await repository.GetAsync( q => q.Where( i => i.FirstName.StartsWith( "Jo" ) ).OrderBy( i => i.LastName ), cancellationToken );
+                    Console.WriteLine( i => i.ToString() );
+            }
+            ]]>
+            </code></example>
+        </member>
+        <member name="M:Bowling.Domain.Abstract.IReadOnlyRepository`1.GetAsync``1(System.Func{System.Linq.IQueryable{`0},``0},System.Threading.CancellationToken)">
+            <summary>
+            Retrieves a query result asynchronously.
+            </summary>
+            <typeparam name="TResult">The <see cref="T:System.Type">type</see> of result to retrieve.</typeparam>
+            <param name="queryShaper">The <see cref="T:System.Func`2">function</see> that shapes the <see cref="T:System.Linq.IQueryable`1">query</see> to execute.</param>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken">cancellation token</see> that can be used to cancel the operation.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1">task</see> containing the <typeparamref name="TResult">result</typeparamref> of the operation.</returns>
+        </member>
+        <member name="T:Bowling.Domain.Abstract.IRepository`1">
+            <summary>
+            Defines the behavior of a repository of items.
+            </summary>
+            <typeparam name="T">The <see cref="T:System.Type">type</see> of item in the repository.</typeparam>
+        </member>
+        <member name="M:Bowling.Domain.Abstract.IRepository`1.Add(`0)">
+            <summary>
+            Adds a new item to the repository.
+            </summary>
+            <param name="item">The new item to add.</param>
+        </member>
+        <member name="M:Bowling.Domain.Abstract.IRepository`1.Remove(`0)">
+            <summary>
+            Removes an item from the repository.
+            </summary>
+            <param name="item">The item to remove.</param>
+        </member>
+        <member name="M:Bowling.Domain.Abstract.IRepository`1.Update(`0)">
+            <summary>
+            Updates an existing item in the repository.
+            </summary>
+            <param name="item">The item to update.</param>
+        </member>
+        <member name="M:Bowling.Domain.Abstract.IRepository`1.DiscardChanges">
+            <summary>
+            Discards all changes to the items within the repository, if any.
+            </summary>
+        </member>
+        <member name="M:Bowling.Domain.Abstract.IRepository`1.SaveChangesAsync(System.Threading.CancellationToken)">
+            <summary>
+            Saves all pending changes in the repository asynchronously.
+            </summary>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken">cancellation token</see> that can be used to cancel the operation.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task">task</see> representing the save operation.</returns>
+        </member>
+        <member name="P:Bowling.Domain.Abstract.IRepository`1.HasPendingChanges">
+            <summary>
+            Gets a value indicating whether there are any pending, unsaved changes.
+            </summary>
+            <value>True if there are any pending unsaved changes; otherwise, false.</value>
+        </member>
+        <member name="T:Bowling.Domain.Abstract.IRepositoryExtensions">
+            <summary>
+            Provides extension methods for the <see cref="T:Bowling.Domain.Abstract.IReadOnlyRepository`1"/> and <see cref="T:Bowling.Domain.Abstract.IRepository`1"/> interfaces.
+            </summary>
+        </member>
+        <member name="M:Bowling.Domain.Abstract.IRepositoryExtensions.GetAsync``1(Bowling.Domain.Abstract.IReadOnlyRepository{``0},System.Func{System.Linq.IQueryable{``0},System.Linq.IQueryable{``0}})">
+            <summary>
+            Retrieves all items in the repository satisfied by the specified query asynchronously.
+            </summary>
+            <typeparam name="T">The <see cref="T:System.Type">type</see> of item in the repository.</typeparam>
+            <param name="repository">The extended <see cref="T:Bowling.Domain.Abstract.IReadOnlyRepository`1">repository</see>.</param>
+            <param name="queryShaper">The <see cref="T:System.Func`2">function</see> that shapes the <see cref="T:System.Linq.IQueryable`1">query</see> to execute.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1">task</see> containing the retrieved <see cref="T:System.Collections.Generic.IEnumerable`1">sequence</see>
+            of <typeparamref name="T">items</typeparamref>.</returns>
+            <example>The following example demonstrates how to paginate the items in a repository using an example query.
+            <code><![CDATA[
+            using Microsoft.DesignPatterns.Examples;
+            using System;
+            using System.Collections.Generic;
+            using System.Linq;
+            using System.Threading;
+            using System.Threading.Tasks;
+            
+            public async static void Main()
+            {
+                var index = 0;
+                var repository = new MyRepository();
+                
+                foreach ( var item in await repository.GetAsync( q => q.Where( i => i.FirstName.StartsWith( "Jo" ) ).OrderBy( i => i.LastName ) );
+                    Console.WriteLine( i => i.ToString() );
+            }
+            ]]>
+            </code></example>
+        </member>
+        <member name="M:Bowling.Domain.Abstract.IRepositoryExtensions.GetAsync``2(Bowling.Domain.Abstract.IReadOnlyRepository{``0},System.Func{System.Linq.IQueryable{``0},``1})">
+            <summary>
+            Retrieves a query result asynchronously.
+            </summary>
+            <typeparam name="T">The <see cref="T:System.Type">type</see> of item in the repository.</typeparam>
+            <typeparam name="TResult">The <see cref="T:System.Type">type</see> of result to retrieve.</typeparam>
+            <param name="repository">The extended <see cref="T:Bowling.Domain.Abstract.IReadOnlyRepository`1">repository</see>.</param>
+            <param name="queryShaper">The <see cref="T:System.Func`2">function</see> that shapes the <see cref="T:System.Linq.IQueryable`1">query</see> to execute.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1">task</see> containing the <typeparamref name="TResult">result</typeparamref> of the operation.</returns>
+        </member>
+        <member name="M:Bowling.Domain.Abstract.IRepositoryExtensions.GetAllAsync``1(Bowling.Domain.Abstract.IReadOnlyRepository{``0})">
+            <summary>
+            Retrieves all items in the repository asynchronously.
+            </summary>
+            <typeparam name="T">The <see cref="T:System.Type">type</see> of item in the repository.</typeparam>
+            <param name="repository">The extended <see cref="T:Bowling.Domain.Abstract.IReadOnlyRepository`1">repository</see>.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1">task</see> containing the <see cref="T:System.Collections.Generic.IEnumerable`1">sequence</see>
+            of all <typeparamref name="T">items</typeparamref> in the repository.</returns>
+            <example>The following example demonstrates how to retrieve all items in a repository.
+            <code><![CDATA[
+            using Microsoft.DesignPatterns.Examples;
+            using System;
+            using System.Collections.Generic;
+            using System.Linq;
+            using System.Threading;
+            using System.Threading.Tasks;
+            
+            public async static void Main()
+            {
+                var repository = new MyRepository();
+                
+                foreach ( var item in await repository.GetAllAsync( i => i.LastName == "Doe" ) )
+                    Console.WriteLine( item.ToString() );
+            }
+            ]]>
+            </code></example>
+        </member>
+        <member name="M:Bowling.Domain.Abstract.IRepositoryExtensions.GetAllAsync``1(Bowling.Domain.Abstract.IReadOnlyRepository{``0},System.Threading.CancellationToken)">
+            <summary>
+            Retrieves all items in the repository asynchronously.
+            </summary>
+            <typeparam name="T">The <see cref="T:System.Type">type</see> of item in the repository.</typeparam>
+            <param name="repository">The extended <see cref="T:Bowling.Domain.Abstract.IReadOnlyRepository`1">repository</see>.</param>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken">cancellation token</see> that can be used to cancel the operation.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1">task</see> containing the <see cref="T:System.Collections.Generic.IEnumerable`1">sequence</see>
+            of all <typeparamref name="T">items</typeparamref> in the repository.</returns>
+            <example>The following example demonstrates how to retrieve all items in a repository.
+            <code><![CDATA[
+            using Microsoft.DesignPatterns.Examples;
+            using System;
+            using System.Collections.Generic;
+            using System.Linq;
+            using System.Threading;
+            using System.Threading.Tasks;
+            
+            public async static void Main()
+            {
+                var repository = new MyRepository();
+                var cancellationToken = new CancellationToken();
+                
+                foreach ( var item in await repository.GetAllAsync( i => i.LastName == "Doe", cancellationToken ) )
+                    Console.WriteLine( item.ToString() );
+            }
+            ]]>
+            </code></example>
+        </member>
+        <member name="M:Bowling.Domain.Abstract.IRepositoryExtensions.FindByAsync``1(Bowling.Domain.Abstract.IReadOnlyRepository{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            Searches for items in the repository that match the specified predicate asynchronously.
+            </summary>
+            <typeparam name="T">The <see cref="T:System.Type">type</see> of item in the repository.</typeparam>
+            <param name="repository">The extended <see cref="T:Bowling.Domain.Abstract.IReadOnlyRepository`1">repository</see>.</param>
+            <param name="predicate">The <see cref="T:System.Linq.Expressions.Expression`1">expression</see> representing the predicate used to
+            match the requested <typeparamref name="T">items</typeparamref>.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1">task</see> containing the matched <see cref="T:System.Collections.Generic.IEnumerable`1">sequence</see>
+            of <typeparamref name="T">items</typeparamref>.</returns>
+            <example>The following example demonstrates how to find items in a repository.
+            <code><![CDATA[
+            using Microsoft.DesignPatterns.Examples;
+            using System;
+            using System.Collections.Generic;
+            using System.Linq;
+            using System.Threading;
+            using System.Threading.Tasks;
+            
+            public async static void Main()
+            {
+                var repository = new MyRepository();
+                var items = await repository.FindByAsync( i => i.LastName == "Doe" );
+                items.ForEach( i => Console.WriteLine( i.ToString() ) );
+            }
+            ]]>
+            </code></example>
+        </member>
+        <member name="M:Bowling.Domain.Abstract.IRepositoryExtensions.FindByAsync``1(Bowling.Domain.Abstract.IReadOnlyRepository{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Threading.CancellationToken)">
+            <summary>
+            Searches for items in the repository that match the specified predicate asynchronously.
+            </summary>
+            <typeparam name="T">The <see cref="T:System.Type">type</see> of item in the repository.</typeparam>
+            <param name="repository">The extended <see cref="T:Bowling.Domain.Abstract.IReadOnlyRepository`1">repository</see>.</param>
+            <param name="predicate">The <see cref="T:System.Linq.Expressions.Expression`1">expression</see> representing the predicate used to
+            match the requested <typeparamref name="T">items</typeparamref>.</param>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken">cancellation token</see> that can be used to cancel the operation.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1">task</see> containing the matched <see cref="T:System.Collections.Generic.IEnumerable`1">sequence</see>
+            of <typeparamref name="T">items</typeparamref>.</returns>
+            <example>The following example demonstrates how to find items in a repository.
+            <code><![CDATA[
+            using Microsoft.DesignPatterns.Examples;
+            using System;
+            using System.Collections.Generic;
+            using System.Linq;
+            using System.Threading;
+            using System.Threading.Tasks;
+            
+            public async static void Main()
+            {
+                var repository = new MyRepository();
+                var cancellationToken = new CancellationToken();
+                var items = await repository.FindByAsync( i => i.LastName == "Doe", cancellationToken );
+                items.ForEach( i => Console.WriteLine( i.ToString() ) );
+            }
+            ]]>
+            </code></example>
+        </member>
+        <member name="M:Bowling.Domain.Abstract.IRepositoryExtensions.GetSingleAsync``1(Bowling.Domain.Abstract.IReadOnlyRepository{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            Retrieves a single item in the repository matching the specified predicate asynchronously.
+            </summary>
+            <typeparam name="T">The <see cref="T:System.Type">type</see> of item in the repository.</typeparam>
+            <param name="repository">The extended <see cref="T:Bowling.Domain.Abstract.IReadOnlyRepository`1">repository</see>.</param>
+            <param name="predicate">The <see cref="T:System.Linq.Expressions.Expression`1">expression</see> representing the predicate used to
+            match the requested <typeparamref name="T">item</typeparamref>.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1">task</see> containing the matched <typeparamref name="T">item</typeparamref>
+            or null if no match was found.</returns>
+            <example>The following example demonstrates how to retrieve a single item from a repository.
+            <code><![CDATA[
+            using Microsoft.DesignPatterns.Examples;
+            using System;
+            using System.Collections.Generic;
+            using System.Linq;
+            using System.Threading;
+            using System.Threading.Tasks;
+            
+            public async static void Main()
+            {
+                var repository = new MyRepository();
+                var item = await repository.GetSingleAsync( i => i.Id == 1 );
+                Console.WriteLine( item.ToString() );
+            }
+            ]]>
+            </code></example>
+        </member>
+        <member name="M:Bowling.Domain.Abstract.IRepositoryExtensions.GetSingleAsync``1(Bowling.Domain.Abstract.IReadOnlyRepository{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Threading.CancellationToken)">
+            <summary>
+            Retrieves a single item in the repository matching the specified predicate asynchronously.
+            </summary>
+            <typeparam name="T">The <see cref="T:System.Type">type</see> of item in the repository.</typeparam>
+            <param name="repository">The extended <see cref="T:Bowling.Domain.Abstract.IReadOnlyRepository`1">repository</see>.</param>
+            <param name="predicate">The <see cref="T:System.Linq.Expressions.Expression`1">expression</see> representing the predicate used to
+            match the requested <typeparamref name="T">item</typeparamref>.</param>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken">cancellation token</see> that can be used to cancel the operation.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1">task</see> containing the matched <typeparamref name="T">item</typeparamref>
+            or null if no match was found.</returns>
+            <example>The following example demonstrates how to retrieve a single item from a repository.
+            <code><![CDATA[
+            using Microsoft.DesignPatterns.Examples;
+            using System;
+            using System.Collections.Generic;
+            using System.Linq;
+            using System.Threading;
+            using System.Threading.Tasks;
+            
+            public async static void Main()
+            {
+                var repository = new MyRepository();
+                var item = await repository.GetSingleAsync( i => i.Id == 1 );
+                Console.WriteLine( item.ToString() );
+            }
+            ]]>
+            </code></example>
+        </member>
+        <member name="M:Bowling.Domain.Abstract.IRepositoryExtensions.PaginateAsync``1(Bowling.Domain.Abstract.IReadOnlyRepository{``0},System.Int32,System.Int32)">
+            <summary>
+            Retrieves and pages all items in the repository asynchronously.
+            </summary>
+            <typeparam name="T">The <see cref="T:System.Type">type</see> of item in the repository.</typeparam>
+            <param name="repository">The extended <see cref="T:Bowling.Domain.Abstract.IReadOnlyRepository`1">repository</see>.</param>
+            <param name="pageIndex">The zero-based index of the data page to retrieve.</param>
+            <param name="pageSize">The size of the data page to retrieve.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1">task</see> containing the <see cref="T:Bowling.Domain.Concrete.EntityFramework.PagedCollection`1">paged collection</see>
+            of <typeparamref name="T">items</typeparamref>.</returns>
+            <example>The following example demonstrates how to paginate all items in a repository.
+            <code><![CDATA[
+            using Microsoft.DesignPatterns.Examples;
+            using System;
+            using System.Collections.Generic;
+            using System.Linq;
+            using System.Threading;
+            using System.Threading.Tasks;
+            
+            public async static void Main()
+            {
+                var index = 0;
+                var repository = new MyRepository();
+                var items = await repository.PaginateAsync( index, 10 );
+                var retrieved = items.Count;
+                
+                items.ForEach( i => Console.WriteLine( i.ToString() ) );
+                
+                while ( retrieved < items.TotalCount )
+                {
+                    items = await repository.PaginateAsync( ++index, 10 );
+                    retrieved += items.Count;
+                    items.ForEach( i => Console.WriteLine( i.ToString() ) );
+                }
+            }
+            ]]>
+            </code></example>
+        </member>
+        <member name="M:Bowling.Domain.Abstract.IRepositoryExtensions.PaginateAsync``1(Bowling.Domain.Abstract.IReadOnlyRepository{``0},System.Int32,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Retrieves and pages all items in the repository asynchronously.
+            </summary>
+            <typeparam name="T">The <see cref="T:System.Type">type</see> of item in the repository.</typeparam>
+            <param name="repository">The extended <see cref="T:Bowling.Domain.Abstract.IReadOnlyRepository`1">repository</see>.</param>
+            <param name="pageIndex">The zero-based index of the data page to retrieve.</param>
+            <param name="pageSize">The size of the data page to retrieve.</param>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken">cancellation token</see> that can be used to cancel the operation.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1">task</see> containing the <see cref="T:Bowling.Domain.Concrete.EntityFramework.PagedCollection`1">paged collection</see>
+            of <typeparamref name="T">items</typeparamref>.</returns>
+            <example>The following example demonstrates how to paginate all items in a repository.
+            <code><![CDATA[
+            using Microsoft.DesignPatterns.Examples;
+            using System;
+            using System.Collections.Generic;
+            using System.Linq;
+            using System.Threading;
+            using System.Threading.Tasks;
+            
+            public async static void Main()
+            {
+                var index = 0;
+                var repository = new MyRepository();
+                var cancellationToken = new CancellationToken();
+                var items = await repository.PaginateAsync( index, 10, cancellationToken );
+                var retrieved = items.Count;
+                
+                items.ForEach( i => Console.WriteLine( i.ToString() ) );
+                
+                while ( retrieved < items.TotalCount )
+                {
+                    items = await repository.PaginateAsync( ++index, 10, cancellationToken );
+                    retrieved += items.Count;
+                    items.ForEach( i => Console.WriteLine( i.ToString() ) );
+                }
+            }
+            ]]>
+            </code></example>
+        </member>
+        <member name="M:Bowling.Domain.Abstract.IRepositoryExtensions.PaginateAsync``1(Bowling.Domain.Abstract.IReadOnlyRepository{``0},System.Func{System.Linq.IQueryable{``0},System.Linq.IQueryable{``0}},System.Int32,System.Int32)">
+            <summary>
+            Retrieves and pages matching items in the repository asynchronously.
+            </summary>
+            <typeparam name="T">The <see cref="T:System.Type">type</see> of item in the repository.</typeparam>
+            <param name="repository">The extended <see cref="T:Bowling.Domain.Abstract.IReadOnlyRepository`1">repository</see>.</param>
+            <param name="queryShaper">The <see cref="T:System.Func`2">function</see> that shapes the <see cref="T:System.Linq.IQueryable`1">query</see> to execute.</param>
+            <param name="pageIndex">The zero-based index of the data page to retrieve.</param>
+            <param name="pageSize">The size of the data page to retrieve.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1">task</see> containing the <see cref="T:Bowling.Domain.Concrete.EntityFramework.PagedCollection`1">paged collection</see>
+            of <typeparamref name="T">items</typeparamref>.</returns>
+            <example>The following example demonstrates how to paginate all items in a repository.
+            <code><![CDATA[
+            using Microsoft.DesignPatterns.Examples;
+            using System;
+            using System.Collections.Generic;
+            using System.Linq;
+            using System.Threading;
+            using System.Threading.Tasks;
+            
+            public async static void Main()
+            {
+                var index = 0;
+                var repository = new MyRepository();
+                var items = await repository.PaginateAsync( q => q.OrderBy( i => LastName ), index, 10 );
+                var retrieved = items.Count;
+                
+                items.ForEach( i => Console.WriteLine( i.ToString() ) );
+                
+                while ( retrieved < items.TotalCount )
+                {
+                    items = await repository.PaginateAsync( q => q.OrderBy( i => LastName ), ++index, 10 );
+                    retrieved += items.Count;
+                    items.ForEach( i => Console.WriteLine( i.ToString() ) );
+                }
+            }
+            ]]>
+            </code></example>
+        </member>
+        <member name="M:Bowling.Domain.Abstract.IRepositoryExtensions.PaginateAsync``1(Bowling.Domain.Abstract.IReadOnlyRepository{``0},System.Func{System.Linq.IQueryable{``0},System.Linq.IQueryable{``0}},System.Int32,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Retrieves and pages matching items in the repository asynchronously.
+            </summary>
+            <typeparam name="T">The <see cref="T:System.Type">type</see> of item in the repository.</typeparam>
+            <param name="repository">The extended <see cref="T:Bowling.Domain.Abstract.IReadOnlyRepository`1">repository</see>.</param>
+            <param name="queryShaper">The <see cref="T:System.Func`2">function</see> that shapes the <see cref="T:System.Linq.IQueryable`1">query</see> to execute.</param>
+            <param name="pageIndex">The zero-based index of the data page to retrieve.</param>
+            <param name="pageSize">The size of the data page to retrieve.</param>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken">cancellation token</see> that can be used to cancel the operation.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1">task</see> containing the <see cref="T:Bowling.Domain.Concrete.EntityFramework.PagedCollection`1">paged collection</see>
+            of <typeparamref name="T">items</typeparamref>.</returns>
+            <example>The following example demonstrates how to paginate all items in a repository.
+            <code><![CDATA[
+            using Microsoft.DesignPatterns.Examples;
+            using System;
+            using System.Collections.Generic;
+            using System.Linq;
+            using System.Threading;
+            using System.Threading.Tasks;
+            
+            public async static void Main()
+            {
+                var index = 0;
+                var repository = new MyRepository();
+                var cancellationToken = new CancellationToken();
+                var items = await repository.PaginateAsync( q => q.OrderBy( i => LastName ), index, 10, cancellationToken );
+                var retrieved = items.Count;
+                
+                items.ForEach( i => Console.WriteLine( i.ToString() ) );
+                
+                while ( retrieved < items.TotalCount )
+                {
+                    items = await repository.PaginateAsync( q => q.OrderBy( i => LastName ), ++index, 10, cancellationToken );
+                    retrieved += items.Count;
+                    items.ForEach( i => Console.WriteLine( i.ToString() ) );
+                }
+            }
+            ]]>
+            </code></example>
+        </member>
+        <member name="M:Bowling.Domain.Abstract.IRepositoryExtensions.SaveChangesAsync``1(Bowling.Domain.Abstract.IRepository{``0})">
+            <summary>
+            Saves all pending changes in the repository asynchronously.
+            </summary>
+            <typeparam name="T">The <see cref="T:System.Type">type</see> of item in the repository.</typeparam>
+            <param name="repository">The extended <see cref="T:Bowling.Domain.Abstract.IReadOnlyRepository`1">repository</see>.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task">task</see> representing the save operation.</returns>
+        </member>
+        <member name="T:Bowling.Domain.Abstract.ISpecification`1">
+            <summary>
+            Defines the behavior of a single, self-evaluating rule supporting simple binary evaluation semantics using the specification pattern.
+            </summary>
+            <typeparam name="T">The <see cref="T:System.Type">type</see> of item to evaluate.</typeparam>
+        </member>
+        <member name="M:Bowling.Domain.Abstract.ISpecification`1.IsSatisfiedBy(`0)">
+            <summary>
+            Determines whether the specified item satisfies the specification.
+            </summary>
+            <param name="item">The item of <typeparamref name="T"/> to evaluate.</param>
+            <returns>True if <paramref name="item"/> satisfies the specification; otherwise, false.</returns>
+        </member>
+        <member name="M:Bowling.Domain.Abstract.ISpecification`1.And(Bowling.Domain.Abstract.ISpecification{`0})">
+            <summary>
+            Combines the current specification with the specified specification using logical 'And' semantics.
+            </summary>
+            <param name="other">The <see cref="T:Bowling.Domain.Abstract.ISpecification`1">specification</see> to union.</param>
+            <returns>A unioned <see cref="T:Bowling.Domain.Abstract.ISpecification`1">specification</see> object.</returns>
+        </member>
+        <member name="M:Bowling.Domain.Abstract.ISpecification`1.Or(Bowling.Domain.Abstract.ISpecification{`0})">
+            <summary>
+            Combines the current specification with the specified specification using logical 'Or' semantics.
+            </summary>
+            <param name="other">The <see cref="T:Bowling.Domain.Abstract.ISpecification`1">specification</see> to union.</param>
+            <returns>A unioned <see cref="T:Bowling.Domain.Abstract.ISpecification`1">specification</see> object.</returns>
+        </member>
+        <member name="M:Bowling.Domain.Abstract.ISpecification`1.Not">
+            <summary>
+            Returns the logical compliment of the specification.
+            </summary>
+            <returns>A <see cref="T:Bowling.Domain.Abstract.ISpecification`1">specification</see> object.</returns>
+        </member>
+        <member name="T:Bowling.Domain.Abstract.ISpecificationExtensions">
+            <summary>
+            Provides extension methods for the <see cref="T:Bowling.Domain.Abstract.ISpecification`1"/> interface.
+            </summary>
+        </member>
+        <member name="M:Bowling.Domain.Abstract.ISpecificationExtensions.And``1(Bowling.Domain.Abstract.ISpecification{``0},System.Func{``0,System.Boolean})">
+            <summary>
+            Combines the current specification with the specified specification using logical 'And' semantics.
+            </summary>
+            <typeparam name="T">The <see cref="T:System.Type">type</see> of item to evaluate.</typeparam>
+            <param name="specification">The left-hand side <see cref="T:Bowling.Domain.Abstract.ISpecification`1">specification</see>.</param>
+            <param name="other">The <see cref="T:Bowling.Domain.Abstract.ISpecification`1">specification</see> to union.</param>
+            <returns>A unioned <see cref="T:Bowling.Domain.Abstract.ISpecification`1">specification</see> object.</returns>
+        </member>
+        <member name="M:Bowling.Domain.Abstract.ISpecificationExtensions.Or``1(Bowling.Domain.Abstract.ISpecification{``0},System.Func{``0,System.Boolean})">
+            <summary>
+            Combines the current specification with the specified specification using logical 'Or' semantics.
+            </summary>
+            <typeparam name="T">The <see cref="T:System.Type">type</see> of item to evaluate.</typeparam>
+            <param name="specification">The left-hand side <see cref="T:Bowling.Domain.Abstract.ISpecification`1">specification</see>.</param>
+            <param name="other">The <see cref="T:Bowling.Domain.Abstract.ISpecification`1">specification</see> to union.</param>
+            <returns>A unioned <see cref="T:Bowling.Domain.Abstract.ISpecification`1">specification</see> object.</returns>
+        </member>
+        <member name="T:Bowling.Domain.Abstract.IUnitOfWorkExtensions">
+            <summary>
+            Provides extension methods for the <see cref="T:Bowling.Domain.Abstract.IUnitOfWork`1"/> class.
+            </summary>
+        </member>
+        <member name="M:Bowling.Domain.Abstract.IUnitOfWorkExtensions.CommitAsync``1(Bowling.Domain.Abstract.IUnitOfWork{``0})">
+            <summary>
+            Commits all pending units of work asynchronously.
+            </summary>
+            <typeparam name="T">The <see cref="T:System.Type">type</see> of item in the unit of work.</typeparam>
+            <param name="unitOfWork">The extended <see cref="T:Bowling.Domain.Abstract.IUnitOfWork`1">unit of work</see>.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task">task</see> representing the commit operation.</returns>
+        </member>
+        <member name="T:Bowling.Domain.Abstract.IUnitOfWorkFactory">
+            <summary>
+            Defines the behavior for a unit of work factory.
+            </summary>
+        </member>
+        <member name="M:Bowling.Domain.Abstract.IUnitOfWorkFactory.Create``1">
+            <summary>
+            Returns a new unit of work.
+            </summary>
+            <typeparam name="TItem">The <see cref="T:System.Type">type</see> of item to create a <see cref="T:Bowling.Domain.Abstract.IUnitOfWork`1">unit of work</see> for.</typeparam>
+            <returns>A <see cref="T:Bowling.Domain.Abstract.IUnitOfWork`1">unit of work</see>.</returns>
+        </member>
+        <member name="M:Bowling.Domain.Abstract.IUnitOfWorkFactory.GetCurrent``1">
+            <summary>
+            Gets the current unit of work for a given type.
+            </summary>
+            <typeparam name="TItem">The <see cref="T:System.Type">type</see> of item to retrieve a <see cref="T:Bowling.Domain.Abstract.IUnitOfWork`1">unit of work</see> for.</typeparam>
+            <returns>A <see cref="T:Bowling.Domain.Abstract.IUnitOfWork`1">unit of work</see>.</returns>
+        </member>
+        <member name="M:Bowling.Domain.Abstract.IUnitOfWorkFactory.SetCurrent``1(Bowling.Domain.Abstract.IUnitOfWork{``0})">
+            <summary>
+            Sets the current unit of work for a given type.
+            </summary>
+            <typeparam name="TItem">The <see cref="T:System.Type">type</see> of item to set a <see cref="T:Bowling.Domain.Abstract.IUnitOfWork`1">unit of work</see> for.</typeparam>
+            <param name="unitOfWork">The current <see cref="T:Bowling.Domain.Abstract.IUnitOfWork`1">unit of work</see>.</param>
+        </member>
+        <member name="P:Bowling.Domain.Abstract.IUnitOfWorkFactory.Specification">
+            <summary>
+            Gets the specification associated with the factory.
+            </summary>
+            <value>A <see cref="T:Bowling.Domain.Abstract.ISpecification`1"/> object.</value>
+        </member>
+        <member name="T:Bowling.Domain.Abstract.IUnitOfWorkFactoryProvider">
+            <summary>
+            Defines the behavior of an object that can locate and provide unit of work factories.
+            </summary>
+        </member>
+        <member name="P:Bowling.Domain.Abstract.IUnitOfWorkFactoryProvider.Factories">
+            <summary>
+            Gets a sequence of unit of work factories supported by the provider.
+            </summary>
+            <value>A <see cref="T:System.Collections.Generic.IEnumerable`1">sequence</see> of <see cref="T:Bowling.Domain.Abstract.IUnitOfWorkFactory">unit of work factories</see>.</value>
+        </member>
+        <member name="T:Bowling.Domain.Abstract.IUnitOfWork`1">
+            <summary>
+            Defines the behavior for a unit of work.
+            </summary>
+            <typeparam name="T">The <see cref="T:System.Type">type</see> of item to perform work on.</typeparam>
+        </member>
+        <member name="M:Bowling.Domain.Abstract.IUnitOfWork`1.RegisterNew(`0)">
+            <summary>
+            Registers a new item.
+            </summary>
+            <param name="item">The new item to register.</param>
+        </member>
+        <member name="M:Bowling.Domain.Abstract.IUnitOfWork`1.RegisterChanged(`0)">
+            <summary>
+            Registers a changed item.
+            </summary>
+            <param name="item">The changed item to register.</param>
+        </member>
+        <member name="M:Bowling.Domain.Abstract.IUnitOfWork`1.RegisterRemoved(`0)">
+            <summary>
+            Registers a removed item.
+            </summary>
+            <param name="item">The removed item to register.</param>
+        </member>
+        <member name="M:Bowling.Domain.Abstract.IUnitOfWork`1.Unregister(`0)">
+            <summary>
+            Unregisters an item.
+            </summary>
+            <param name="item">The item to unregister.</param>
+        </member>
+        <member name="M:Bowling.Domain.Abstract.IUnitOfWork`1.Rollback">
+            <summary>
+            Rolls back all pending units of work.
+            </summary>
+        </member>
+        <member name="M:Bowling.Domain.Abstract.IUnitOfWork`1.CommitAsync(System.Threading.CancellationToken)">
+            <summary>
+            Commits all pending units of work asynchronously.
+            </summary>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken">cancellation token</see> that can be used to cancel the operation.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task">task</see> representing the commit operation.</returns>
+        </member>
+        <member name="P:Bowling.Domain.Abstract.IUnitOfWork`1.HasPendingChanges">
+            <summary>
+            Gets a value indicating whether there are any pending, uncommitted changes.
+            </summary>
+            <value>True if there are any pending uncommitted changes; otherwise, false.</value>
+        </member>
+        <member name="T:Bowling.Domain.Abstract.IUnitOfWorkContract`1">
+            <summary>
+            Provides the code contract for the <see cref="T:Bowling.Domain.Abstract.IUnitOfWork`1"/> interface.
+            </summary>
+            <typeparam name="T">The <see cref="T:System.Type">type</see> of item to perform work on.</typeparam>
+        </member>
+        <member name="T:Bowling.Domain.Concrete.EntityFramework.BaseContext">
+            <summary>
+            Base database context from which all other database contexts will be extended
+            </summary>
+        </member>
+        <member name="T:Bowling.Domain.Concrete.EntityFramework.IDbContext">
+            <summary>
+            Interface for database contexts
+            </summary>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.IDbContext.SaveChanges">
+            <summary>
+            Save the changes to all entities within the current context
+            </summary>
+            <returns>Error code</returns>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.IDbContext.Set``1">
+            <summary>
+            Returns a DbSet for the current entity type
+            </summary>
+            <typeparam name="TEntity">The entity type</typeparam>
+            <returns>DbSet</returns>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.IDbContext.Refresh(System.Object)">
+            <summary>
+            This refreshes the contents of a given object from the database.
+            </summary>
+            <param name="entity">Object to be refreshed</param>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.IDbContext.Entry(System.Object)">
+            <summary>
+            Gets a System.Data.Entity.Infrastructure.DbEntityEntry object for the given entity
+            </summary>
+            <param name="entity">Entity to use</param>
+            <returns>DbEntityEntry</returns>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.BaseContext.#cctor">
+            <summary>
+            Static constructor to create an empty context
+            </summary>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.BaseContext.#ctor(System.String)">
+            <summary>
+            Constructor creating a database context from a given connection string
+            </summary>
+            <param name="nameOrConnectionString">Connection string</param>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.BaseContext.#ctor(System.Data.Common.DbConnection)">
+            <summary>
+            Constructor creating a database context from a given database connection
+            </summary>
+            <param name="dbConnection">Database connection</param>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.BaseContext.OnModelCreating(System.Data.Entity.DbModelBuilder)">
+            <summary>
+            Model creating event
+            </summary>
+            <param name="modelBuilder">Model builder object being used</param>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.BaseContext.Refresh(System.Object)">
+            <summary>
+            This refreshes the contents of a given object from the database.
+            </summary>
+            <param name="entity">Entity to refresh</param>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.BaseContext.SaveChanges">
+            <summary>
+            Calls the DbContext SaveChanges. If it fails validation, it will be handled with our own exception
+            </summary>
+            <returns>Error code</returns>
+        </member>
+        <member name="P:Bowling.Domain.Concrete.EntityFramework.BaseContext.NamespaceDataContext">
+            <summary>
+            Name space for context
+            </summary>
+            <returns>Name space</returns>
+        </member>
+        <member name="P:Bowling.Domain.Concrete.EntityFramework.BaseContext.Schema">
+            <summary>
+            Schema for the context
+            </summary>
+            <returns>Schema</returns>
+        </member>
+        <member name="T:Bowling.Domain.Concrete.EntityFramework.BaseEntityMap`1">
+            <summary>
+            Base Entity Framework mapping class for Insight domain entities. This class
+            configures the attributes on the base entity and also properties on the specified
+            domain entity type by looking at settings provided via the SymEntity attribute
+            and properties specified by the Field Definitions for the class.
+            </summary>
+            <typeparam name="T">The type of the entity being mapped</typeparam>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.BaseEntityMap`1.#ctor">
+            <summary>
+            Constructor creating the default mappings on all entities
+            </summary>
+        </member>
+        <member name="T:Bowling.Domain.Concrete.EntityFramework.DataContext">
+            <summary>
+            Context for the main database
+            </summary>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.DataContext.#cctor">
+            <summary>
+            Static constructor to create an empty data context.  If we are building the database instruct 
+            the system to create a database if it doesn't exst.  This cannot be used for normal usage as
+            it is incompatible with caching
+            </summary>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.DataContext.#ctor(System.String)">
+            <summary>
+            Constructor to create a data context from the given connection string,
+            setting whether it is a management database
+            </summary>
+            <param name="connectionString">Connection string</param>
+            <param name="managementModelOnly">Management model only</param>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.DataContext.#ctor">
+            <summary>
+            Constructor to create a data context from the stored connection string,
+            setting whether it is a management database
+            </summary>
+            <param name="managementContext">Management model only</param>
+        </member>
+        <member name="T:Bowling.Domain.Concrete.EntityFramework.LogicalAndSpecification`1">
+            <summary>
+            Represents a specification that models a logical 'And' expression <seealso cref="T:Bowling.Domain.Concrete.EntityFramework.Specification`1"/>.
+            </summary>
+            <typeparam name="T">The <see cref="T:System.Type">type</see> of item to evaluate.</typeparam>
+        </member>
+        <member name="T:Bowling.Domain.Concrete.EntityFramework.SpecificationBase`1">
+            <summary>
+            Represents a single, self-evaluating rule supporting simple binary evaluation semantics.
+            </summary>
+            <typeparam name="T">The <see cref="T:System.Type">type</see> of item to evaluate.</typeparam>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.SpecificationBase`1.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bowling.Domain.Concrete.EntityFramework.SpecificationBase`1"/> class.
+            </summary>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.SpecificationBase`1.IsSatisfiedBy(`0)">
+            <summary>
+            Determines whether the specified item satisfies the specification.
+            </summary>
+            <param name="item">The item of <typeparamref name="T"/> to evaluate.</param>
+            <returns>True if <paramref name="item"/> satisfies the specification; otherwise, false.</returns>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.SpecificationBase`1.And(Bowling.Domain.Abstract.ISpecification{`0})">
+            <summary>
+            Combines the current specification with the specified specification using logical 'And' semantics.
+            </summary>
+            <param name="other">The <see cref="T:Bowling.Domain.Abstract.ISpecification`1">specification</see> to union.</param>
+            <returns>A unioned <see cref="T:Bowling.Domain.Abstract.ISpecification`1">specification</see> object.</returns>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.SpecificationBase`1.Or(Bowling.Domain.Abstract.ISpecification{`0})">
+            <summary>
+            Combines the current specification with the specified specification using logical 'Or' semantics.
+            </summary>
+            <param name="other">The <see cref="T:Bowling.Domain.Abstract.ISpecification`1">specification</see> to union.</param>
+            <returns>A unioned <see cref="T:Bowling.Domain.Abstract.ISpecification`1">specification</see> object.</returns>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.SpecificationBase`1.Not">
+            <summary>
+            Returns the logical compliment of the specification.
+            </summary>
+            <returns>A <see cref="T:Bowling.Domain.Abstract.ISpecification`1">specification</see> object.</returns>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.LogicalAndSpecification`1.#ctor(Bowling.Domain.Abstract.ISpecification{`0},Bowling.Domain.Abstract.ISpecification{`0})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bowling.Domain.Concrete.EntityFramework.LogicalAndSpecification`1"/> class.
+            </summary>
+            <param name="left">The <see cref="T:Bowling.Domain.Abstract.ISpecification`1">specification</see> representing the left-hand side of the unioned specification.</param>
+            <param name="right">The <see cref="T:Bowling.Domain.Abstract.ISpecification`1">specification</see> representing the right-hand side of the unioned specification.</param>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.LogicalAndSpecification`1.IsSatisfiedBy(`0)">
+            <summary>
+            Determines whether the specified item satisfies the specification.
+            </summary>
+            <param name="item">The item of <typeparamref name="T"/> to evaluate.</param>
+            <returns>True if <paramref name="item"/> satisfies the specification; otherwise, false.</returns>
+        </member>
+        <member name="P:Bowling.Domain.Concrete.EntityFramework.LogicalAndSpecification`1.Left">
+            <summary>
+            Gets the left-hand side of the unioned specification.
+            </summary>
+            <value>An <see cref="T:Bowling.Domain.Abstract.ISpecification`1">specification</see> object.</value>
+        </member>
+        <member name="P:Bowling.Domain.Concrete.EntityFramework.LogicalAndSpecification`1.Right">
+            <summary>
+            Gets the right-hand side of the unioned specification.
+            </summary>
+            <value>An <see cref="T:Bowling.Domain.Abstract.ISpecification`1">specification</see> object.</value>
+        </member>
+        <member name="T:Bowling.Domain.Concrete.EntityFramework.LogicalNotSpecification`1">
+            <summary>
+            Represents a specification that models a logical compliment to another specification <seealso cref="T:Bowling.Domain.Concrete.EntityFramework.Specification`1"/>.
+            </summary>
+            <typeparam name="T">The <see cref="T:System.Type">type</see> of item to evaluate.</typeparam>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.LogicalNotSpecification`1.#ctor(Bowling.Domain.Abstract.ISpecification{`0})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bowling.Domain.Concrete.EntityFramework.LogicalNotSpecification`1"/> class.
+            </summary>
+            <param name="complement">The <see cref="T:Bowling.Domain.Abstract.ISpecification`1">specification</see> representing the logical compliment the specification.</param>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.LogicalNotSpecification`1.IsSatisfiedBy(`0)">
+            <summary>
+            Determines whether the specified item satisfies the specification.
+            </summary>
+            <param name="item">The item of <typeparamref name="T"/> to evaluate.</param>
+            <returns>True if <paramref name="item"/> satisfies the specification; otherwise, false.</returns>
+        </member>
+        <member name="P:Bowling.Domain.Concrete.EntityFramework.LogicalNotSpecification`1.Complement">
+            <summary>
+            Gets the compliment of the specification.
+            </summary>
+            <value>An <see cref="T:Bowling.Domain.Abstract.ISpecification`1">specification</see> object.</value>
+        </member>
+        <member name="T:Bowling.Domain.Concrete.EntityFramework.LogicalOrSpecification`1">
+            <summary>
+            Represents a specification that models a logical 'Or' expression <seealso cref="T:Bowling.Domain.Concrete.EntityFramework.Specification`1"/>.
+            </summary>
+            <typeparam name="T">The <see cref="T:System.Type">type</see> of item to evaluate.</typeparam>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.LogicalOrSpecification`1.#ctor(Bowling.Domain.Abstract.ISpecification{`0},Bowling.Domain.Abstract.ISpecification{`0})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bowling.Domain.Concrete.EntityFramework.LogicalOrSpecification`1"/> class.
+            </summary>
+            <param name="left">The <see cref="T:Bowling.Domain.Abstract.ISpecification`1">specification</see> representing the left-hand side of the unioned specification.</param>
+            <param name="right">The <see cref="T:Bowling.Domain.Abstract.ISpecification`1">specification</see> representing the right-hand side of the unioned specification.</param>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.LogicalOrSpecification`1.IsSatisfiedBy(`0)">
+            <summary>
+            Determines whether the specified item satisfies the specification.
+            </summary>
+            <param name="item">The item of <typeparamref name="T"/> to evaluate.</param>
+            <returns>True if <paramref name="item"/> satisfies the specification; otherwise, false.</returns>
+        </member>
+        <member name="P:Bowling.Domain.Concrete.EntityFramework.LogicalOrSpecification`1.Left">
+            <summary>
+            Gets the left-hand side of the unioned specification.
+            </summary>
+            <value>An <see cref="T:Bowling.Domain.Abstract.ISpecification`1">specification</see> object.</value>
+        </member>
+        <member name="P:Bowling.Domain.Concrete.EntityFramework.LogicalOrSpecification`1.Right">
+            <summary>
+            Gets the right-hand side of the unioned specification.
+            </summary>
+            <value>An <see cref="T:Bowling.Domain.Abstract.ISpecification`1">specification</see> object.</value>
+        </member>
+        <member name="T:Bowling.Domain.Concrete.EntityFramework.Mapping.AttendeeMap">
+            <summary>
+            Contact database field definition
+            </summary>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.Mapping.AttendeeMap.#ctor">
+            <summary>
+            Define the table fields
+            </summary>
+        </member>
+        <member name="T:Bowling.Domain.Concrete.EntityFramework.Mapping.BowlerMap">
+            <summary>
+            Contact database field definition
+            </summary>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.Mapping.BowlerMap.#ctor">
+            <summary>
+            Define the table fields
+            </summary>
+        </member>
+        <member name="T:Bowling.Domain.Concrete.EntityFramework.Mapping.EventMap">
+            <summary>
+            Contact database field definition
+            </summary>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.Mapping.EventMap.#ctor">
+            <summary>
+            Define the table fields
+            </summary>
+        </member>
+        <member name="T:Bowling.Domain.Concrete.EntityFramework.Mapping.FoodOptionMap">
+            <summary>
+            Contact database field definition
+            </summary>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.Mapping.FoodOptionMap.#ctor">
+            <summary>
+            Define the table fields
+            </summary>
+        </member>
+        <member name="T:Bowling.Domain.Concrete.EntityFramework.Mapping.ResultMap">
+            <summary>
+            Contact database field definition
+            </summary>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.Mapping.ResultMap.#ctor">
+            <summary>
+            Define the table fields
+            </summary>
+        </member>
+        <member name="T:Bowling.Domain.Concrete.EntityFramework.Mapping.RoundMap">
+            <summary>
+            Contact database field definition
+            </summary>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.Mapping.RoundMap.#ctor">
+            <summary>
+            Define the table fields
+            </summary>
+        </member>
+        <member name="T:Bowling.Domain.Concrete.EntityFramework.PagedCollection`1">
+            <summary>
+            Represents a read-only collection of paged items.
+            </summary>
+            <typeparam name="T">The <see cref="T:System.Type">item</see> of item returned by the result.</typeparam>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.PagedCollection`1.#ctor(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bowling.Domain.Concrete.EntityFramework.PagedCollection`1"/> class.
+            </summary>
+            <param name="sequence">The <see cref="T:System.Collections.Generic.IEnumerable`1"/> containing the current data page of items.</param>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.PagedCollection`1.#ctor(System.Collections.ObjectModel.ObservableCollection{`0})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bowling.Domain.Concrete.EntityFramework.PagedCollection`1"/> class.
+            </summary>
+            <param name="collection">The <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/> containing the current data page of items.</param>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.PagedCollection`1.#ctor(System.Collections.Generic.IEnumerable{`0},System.Int64)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bowling.Domain.Concrete.EntityFramework.PagedCollection`1"/> class.
+            </summary>
+            <param name="sequence">The <see cref="T:System.Collections.Generic.IEnumerable`1"/> containing the current data page of items.</param>
+            <param name="totalCount">The total number of items.</param>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.PagedCollection`1.#ctor(System.Collections.ObjectModel.ObservableCollection{`0},System.Int64)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bowling.Domain.Concrete.EntityFramework.PagedCollection`1"/> class.
+            </summary>
+            <param name="collection">The <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/> containing the current data page of items.</param>
+            <param name="totalCount">The total number of items.</param>
+        </member>
+        <member name="P:Bowling.Domain.Concrete.EntityFramework.PagedCollection`1.TotalCount">
+            <summary>
+            Gets or sets the total count of all items.
+            </summary>
+            <value>The total count of all items.</value>
+        </member>
+        <member name="T:Bowling.Domain.Concrete.EntityFramework.Repository`1">
+            <summary>
+            Represents a repository of items.
+            </summary>
+            <typeparam name="T">The <see cref="T:System.Type">type</see> of item in the repository.</typeparam>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.Repository`1.#ctor(Bowling.Domain.Abstract.IUnitOfWork{`0})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bowling.Domain.Concrete.EntityFramework.Repository`1"/> class.
+            </summary>
+            <param name="unitOfWork">The <see cref="T:Bowling.Domain.Abstract.IUnitOfWork`1">unit of work</see> used to manage changes to items in the repository.</param>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.Repository`1.OnPropertyChanged(System.ComponentModel.PropertyChangedEventArgs)">
+            <summary>
+            Raises the <see cref="E:PropertyChanged"/> event.
+            </summary>
+            <param name="e">The <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> event data.</param>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.Repository`1.GetAsync(System.Func{System.Linq.IQueryable{`0},System.Linq.IQueryable{`0}},System.Threading.CancellationToken)">
+            <summary>
+            Retrieves all items in the repository satisfied by the specified query asynchronously.
+            </summary>
+            <param name="queryShaper">The <see cref="T:System.Func`2">function</see> that shapes the <see cref="T:System.Linq.IQueryable`1">query</see> to execute.</param>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken">cancellation token</see> that can be used to cancel the operation.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1">task</see> containing the retrieved <see cref="T:System.Collections.Generic.IEnumerable`1">sequence</see> of <typeparamref name="T">items</typeparamref>.</returns>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.Repository`1.GetAsync``1(System.Func{System.Linq.IQueryable{`0},``0},System.Threading.CancellationToken)">
+            <summary>
+            Retrieves a query result asynchronously.
+            </summary>
+            <typeparam name="TResult">The <see cref="T:System.Type">type</see> of result to retrieve.</typeparam>
+            <param name="queryShaper">The <see cref="T:System.Func`2">function</see> that shapes the <see cref="T:System.Linq.IQueryable`1">query</see> to execute.</param>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken">cancellation token</see> that can be used to cancel the operation.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1">task</see> containing the <typeparamref name="TResult">result</typeparamref> of the operation.</returns>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.Repository`1.Add(`0)">
+            <summary>
+            Adds a new item to the repository.
+            </summary>
+            <param name="item">The new item to add.</param>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.Repository`1.Remove(`0)">
+            <summary>
+            Removes an item from the repository.
+            </summary>
+            <param name="item">The item to remove.</param>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.Repository`1.Update(`0)">
+            <summary>
+            Updates an existing item in the repository.
+            </summary>
+            <param name="item">The item to update.</param>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.Repository`1.DiscardChanges">
+            <summary>
+            Discards all changes to the items within the repository, if any.
+            </summary>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.Repository`1.SaveChangesAsync(System.Threading.CancellationToken)">
+            <summary>
+            Saves all pending changes in the repository asynchronously.
+            </summary>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken">cancellation token</see> that can be used to cancel the operation.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task">task</see> representing the save operation.</returns>
+        </member>
+        <member name="P:Bowling.Domain.Concrete.EntityFramework.Repository`1.UnitOfWork">
+            <summary>
+            Gets the unit of work used to add and remove items to the repository.
+            </summary>
+            <value>The <see cref="T:Bowling.Domain.Abstract.IUnitOfWork`1">unit of work</see> used to add and remove items.</value>
+        </member>
+        <member name="P:Bowling.Domain.Concrete.EntityFramework.Repository`1.HasPendingChanges">
+            <summary>
+            Gets a value indicating whether there are any pending, uncommitted changes.
+            </summary>
+            <value>True if there are any pending uncommitted changes; otherwise, false.</value>
+        </member>
+        <member name="E:Bowling.Domain.Concrete.EntityFramework.Repository`1.PropertyChanged">
+            <summary>
+            Occurs when a property value changes.
+            </summary>
+            <remarks>The <seealso cref="E:Bowling.Domain.Concrete.EntityFramework.Repository`1.PropertyChanged"/> event can indicate all properties on the object have changed by using either
+            <see langkeyword="null">null</see> or <see cref="F:String.Empty"/> as the property name in the <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/>.</remarks>
+        </member>
+        <member name="T:Bowling.Domain.Concrete.EntityFramework.Specification`1">
+            <summary>
+            Represents a specification that executes a user-defined <see cref="T:System.Func`2">function</see>.
+            </summary>
+            <typeparam name="T">The <see cref="T:System.Type">type</see> of item to evaluate.</typeparam>
+            <example>This example demonstrates how to create a specification that uses a lamda expression for the rule evaluation process.
+            <code lang="C#"><![CDATA[
+            using Microsoft.DesignPatterns.Examples;
+            using System;
+            using System.Collections.Generic;
+            using System.Linq;
+            
+            var checkedOut = new Specification<Book>( book => book.IsCheckedOut );
+            var overdue = new Specification<Book>( book => book.ReturnDate >= DateTime.Today );
+            var noticeSent = new Specification<Book>( book => book.NoticeMailed );
+            var lateNoticeRequired = checkedOut.And( overdue ).And( noticeSent.Not() );
+            var mailingList = repository.GetBooks().Where( lateNoticeRequired.IsSatisfiedBy );
+            ]]></code>
+            </example>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.Specification`1.#ctor(System.Func{`0,System.Boolean})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bowling.Domain.Concrete.EntityFramework.Specification`1"/> class.
+            </summary>
+            <param name="evaluate">The <see cref="T:System.Func`2">function</see> representing the evaluation of the specification.</param>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.Specification`1.IsSatisfiedBy(`0)">
+            <summary>
+            Determines whether the specified item satisfies the specification.
+            </summary>
+            <param name="item">The <typeparamref name="T">item</typeparamref> to evaluate.</param>
+            <returns>True if the <paramref name="item"/> satisfies the specification; otherwise, false.</returns>
+        </member>
+        <member name="T:Bowling.Domain.Concrete.EntityFramework.UnitOfWork">
+            <summary>
+            Represents a unit of work factory.
+            </summary>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.UnitOfWork.Create``1">
+            <summary>
+            Creates a unit of work for a given type.
+            </summary>
+            <typeparam name="TItem">The <see cref="T:System.Type">type</see> of item to create a <see cref="T:Bowling.Domain.Abstract.IUnitOfWork`1">unit of work</see> for.</typeparam>
+            <returns>A <see cref="T:Bowling.Domain.Abstract.IUnitOfWork`1">unit of work</see>.</returns>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.UnitOfWork.GetCurrent``1">
+            <summary>
+            Gets the current unit of work for a given type.
+            </summary>
+            <typeparam name="TItem">The <see cref="T:System.Type">type</see> of item to retrieve a <see cref="T:Bowling.Domain.Abstract.IUnitOfWork`1">unit of work</see> for.</typeparam>
+            <returns>A <see cref="T:Bowling.Domain.Abstract.IUnitOfWork`1">unit of work</see>.</returns>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.UnitOfWork.SetCurrent``1(Bowling.Domain.Abstract.IUnitOfWork{``0})">
+            <summary>
+            Sets the current unit of work for a given type.
+            </summary>
+            <typeparam name="TItem">The <see cref="T:System.Type">type</see> of item to set a <see cref="T:Bowling.Domain.Abstract.IUnitOfWork`1">unit of work</see> for.</typeparam>
+            <param name="unitOfWork">The current <see cref="T:Bowling.Domain.Abstract.IUnitOfWork`1">unit of work</see>.</param>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.UnitOfWork.NewCurrent``1">
+            <summary>
+            Sets and returns a new unit of work for a given type.
+            </summary>
+            <typeparam name="TItem">The <see cref="T:System.Type">type</see> of item to create a new a <see cref="T:Bowling.Domain.Abstract.IUnitOfWork`1">unit of work</see> for.</typeparam>
+            <returns>The new, current <see cref="T:Bowling.Domain.Abstract.IUnitOfWork`1">unit of work</see> for the given <typeparamref name="TItem">item</typeparamref>.</returns>
+        </member>
+        <member name="P:Bowling.Domain.Concrete.EntityFramework.UnitOfWork.Provider">
+            <summary>
+            Gets or sets the <see cref="T:Bowling.Domain.Abstract.IUnitOfWorkFactoryProvider">unit of work factory provider</see> used for all units of work.
+            </summary>
+            <value>A <see cref="T:Bowling.Domain.Abstract.IUnitOfWorkFactoryProvider">unit of work factory provider</see>.</value>
+        </member>
+        <member name="T:Bowling.Domain.Concrete.EntityFramework.UnitOfWork.EmptyFactoryProvider">
+            <summary>
+            Represents an empty unit of work factory to provider used to satisfy the Null Object pattern.
+            </summary>
+        </member>
+        <member name="T:Bowling.Domain.Concrete.EntityFramework.UnitOfWork.UncommittableUnitOfWorkFactory`1">
+            <summary>
+            Represents a unit of work factory that creates uncommittable units of work for any type.
+            </summary>
+            <typeparam name="T">The <see cref="T:System.Type">type</see> to create a unit of work for.</typeparam>
+        </member>
+        <member name="T:Bowling.Domain.Concrete.EntityFramework.UnitOfWorkFactory">
+            <summary>
+            Represents the base implementation for a unit of work factory.
+            </summary>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.UnitOfWorkFactory.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bowling.Domain.Concrete.EntityFramework.UnitOfWorkFactory"/> class.
+            </summary>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.UnitOfWorkFactory.RegisterFactoryMethod``1(System.Func{Bowling.Domain.Abstract.IUnitOfWork{``0}})">
+            <summary>
+            Registers a factory method for a type of unit of work.
+            </summary>
+            <typeparam name="TItem">The <see cref="T:System.Type">type</see> of item to register a unit of work factory for.</typeparam>
+            <param name="factory">A <see cref="T:System.Func`1">function</see> representing the factory method to create units of work.</param>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.UnitOfWorkFactory.Create``1">
+            <summary>
+            Returns a new unit of work.
+            </summary>
+            <typeparam name="TItem">The <see cref="T:System.Type">type</see> of item to create a <see cref="T:Bowling.Domain.Abstract.IUnitOfWork`1">unit of work</see> for.</typeparam>
+            <returns>A <see cref="T:Bowling.Domain.Abstract.IUnitOfWork`1">unit of work</see>.</returns>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.UnitOfWorkFactory.GetCurrent``1">
+            <summary>
+            Returns the current unit of work.
+            </summary>
+            <typeparam name="TItem">The <see cref="T:System.Type">type</see> of item to retrieve a <see cref="T:Bowling.Domain.Abstract.IUnitOfWork`1">unit of work</see> for.</typeparam>
+            <returns>A <see cref="T:Bowling.Domain.Abstract.IUnitOfWork`1">unit of work</see>.</returns>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.UnitOfWorkFactory.SetCurrent``1(Bowling.Domain.Abstract.IUnitOfWork{``0})">
+            <summary>
+            Sets the current unit of work for a given type.
+            </summary>
+            <typeparam name="TItem">The <see cref="T:System.Type">type</see> of item to set a <see cref="T:Bowling.Domain.Abstract.IUnitOfWork`1">unit of work</see> for.</typeparam>
+            <param name="unitOfWork">The current <see cref="T:Bowling.Domain.Abstract.IUnitOfWork`1">unit of work</see>.</param>
+        </member>
+        <member name="P:Bowling.Domain.Concrete.EntityFramework.UnitOfWorkFactory.Specification">
+            <summary>
+            Gets the specification associated with the factory.
+            </summary>
+            <value>A <see cref="T:Bowling.Domain.Abstract.ISpecification`1"/> object.</value>
+        </member>
+        <member name="T:Bowling.Domain.Concrete.EntityFramework.UnitOfWork.UncommittableUnitOfWork`1">
+            <summary>
+            Represents an uncommittable unit of work.
+            </summary>
+            <typeparam name="T">The type of objects contained in the unit of work.</typeparam>
+            <remarks>This class is internally used to satisfy the Null Object pattern. This allows unit testing and
+            other scenarios without requiring a unit of work to be registered.  When an attempt is made to commit
+            work against this class is performed, an <see cref="T:System.InvalidOperationException"/> is thrown.</remarks>
+        </member>
+        <member name="T:Bowling.Domain.Concrete.EntityFramework.UnitOfWork`1">
+            <summary>
+            Represents the base implementation for a unit of work.
+            </summary>
+            <typeparam name="T">The <see cref="T:System.Type">type</see> of items the unit of work contains.</typeparam>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.UnitOfWork`1.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bowling.Domain.Concrete.EntityFramework.UnitOfWork`1"/> class.
+            </summary>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.UnitOfWork`1.#ctor(System.Collections.Generic.IEqualityComparer{`0})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bowling.Domain.Concrete.EntityFramework.UnitOfWork`1"/> class.
+            </summary>
+            <param name="comparer">The <see cref="T:System.Collections.Generic.IEqualityComparer`1">comparer</see> used to comparer item equality.</param>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.UnitOfWork`1.OnPropertyChanged(System.String)">
+            <summary>
+            Raises the <see cref="E:PropertyChanged"/> event for the supplied property name.
+            </summary>
+            <param name="propertyName">The name of the property that changed. The default value is the name of the
+            member the method is invoked from<seealso cref="!:CallerMemberNameAttribute"/>.</param>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.UnitOfWork`1.OnPropertyChanged(System.ComponentModel.PropertyChangedEventArgs)">
+            <summary>
+            Raises the <see cref="E:PropertyChanged"/> event.
+            </summary>
+            <param name="e">The <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> event data.</param>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.UnitOfWork`1.AcceptChanges">
+            <summary>
+            Accepts all of the pending changes in the unit of work.
+            </summary>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.UnitOfWork`1.IsNew(`0)">
+            <summary>
+            Returns a value indicating whether the specified item is a new item.
+            </summary>
+            <param name="item">The <typeparamref name="T">item</typeparamref> to evaluate.</param>
+            <returns>True if the item is a new item; otherwise, false.</returns>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.UnitOfWork`1.RegisterNew(`0)">
+            <summary>
+            Registers a new item.
+            </summary>
+            <param name="item">The new  to register.</param>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.UnitOfWork`1.RegisterChanged(`0)">
+            <summary>
+            Registers a changed item.
+            </summary>
+            <param name="item">The changed <typeparamref name="T">item</typeparamref> to register.</param>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.UnitOfWork`1.RegisterRemoved(`0)">
+            <summary>
+            Registers a removed item.
+            </summary>
+            <param name="item">The removed <typeparamref name="T">item</typeparamref> to register.</param>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.UnitOfWork`1.Unregister(`0)">
+            <summary>
+            Unregisters an item.
+            </summary>
+            <param name="item">The <typeparamref name="T">item</typeparamref> to unregister.</param>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.UnitOfWork`1.Rollback">
+            <summary>
+            Rolls back all pending units of work.
+            </summary>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.UnitOfWork`1.CommitAsync(System.Threading.CancellationToken)">
+            <summary>
+            Commits all pending units of work asychronously.
+            </summary>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken">cancellation token</see> that can be used to cancel the operation.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task">task</see> representing the commit operation.</returns>
+        </member>
+        <member name="P:Bowling.Domain.Concrete.EntityFramework.UnitOfWork`1.Comparer">
+            <summary>
+            Gets the equality comparer used by the unit of work.
+            </summary>
+            <value>An <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> object.</value>
+        </member>
+        <member name="P:Bowling.Domain.Concrete.EntityFramework.UnitOfWork`1.InsertedItems">
+            <summary>
+            Gets a collection of the inserted units of work.
+            </summary>
+            <value>A <see cref="T:System.Collections.Generic.ICollection`1">collection</see> of inserted items.</value>
+        </member>
+        <member name="P:Bowling.Domain.Concrete.EntityFramework.UnitOfWork`1.UpdatedItems">
+            <summary>
+            Gets a collection of the updated units of work.
+            </summary>
+            <value>A <see cref="T:System.Collections.Generic.ICollection`1">collection</see> of updated items.</value>
+        </member>
+        <member name="P:Bowling.Domain.Concrete.EntityFramework.UnitOfWork`1.DeletedItems">
+            <summary>
+            Gets a collection of the deleted units of work.
+            </summary>
+            <value>A <see cref="T:System.Collections.Generic.ICollection`1">collection</see> of deleted items.</value>
+        </member>
+        <member name="P:Bowling.Domain.Concrete.EntityFramework.UnitOfWork`1.HasPendingChanges">
+            <summary>
+            Gets a value indicating whether there is an pending, uncommitted changes.
+            </summary>
+            <value>True if there are any pending uncommitted changes; otherwise, false.</value>
+        </member>
+        <member name="E:Bowling.Domain.Concrete.EntityFramework.UnitOfWork`1.PropertyChanged">
+            <summary>
+            Occurs when a property value changes.
+            </summary>
+            <remarks>The <seealso cref="E:Bowling.Domain.Concrete.EntityFramework.UnitOfWork`1.PropertyChanged"/> event can indicate all properties on the object have changed by using either
+            <see langkeyword="null">null</see> or <see cref="F:String.Empty"/> as the property name in the <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/>.</remarks>
+        </member>
+        <member name="T:Bowling.Domain.Concrete.EntityFramework.UnitOfWorkFactoryProvider">
+            <summary>
+            Represents an object that can locate and provide unit of work factories.
+            </summary>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.UnitOfWorkFactoryProvider.#ctor(System.Func{System.Collections.Generic.IEnumerable{Bowling.Domain.Abstract.IUnitOfWorkFactory}})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bowling.Domain.Concrete.EntityFramework.UnitOfWorkFactoryProvider"/> class.
+            </summary>
+            <param name="providerFactory">The provider <see cref="T:System.Func`1">factory method</see> used to locate factories.</param>
+        </member>
+        <member name="P:Bowling.Domain.Concrete.EntityFramework.UnitOfWorkFactoryProvider.Factories">
+            <summary>
+            Gets a sequence of unit of work factories supported by the provider.
+            </summary>
+            <value>A <see cref="T:System.Collections.Generic.IEnumerable`1">sequence</see> of <see cref="T:Bowling.Domain.Abstract.IUnitOfWorkFactory">unit of work factories</see>.</value>
+        </member>
+        <member name="T:Bowling.Domain.Entities.Attendee">
+            <summary>
+            Record of which bowlers attended each event, along with their food option and score
+            </summary>
+        </member>
+        <member name="M:Bowling.Domain.Entities.BaseEntity.OnPropertyChanged(System.String)">
+            <summary>
+            On property changed event
+            </summary>
+            <param name="propertyName">Property being changed</param>
+        </member>
+        <member name="M:Bowling.Domain.Entities.BaseEntity.OnPropertyChanging(System.String)">
+            <summary>
+            Property changing event
+            </summary>
+            <param name="propertyName">Property being changed</param>
+        </member>
+        <member name="E:Bowling.Domain.Entities.BaseEntity.PropertyChanged">
+            <summary>
+            Property changed event handler
+            </summary>
+        </member>
+        <member name="E:Bowling.Domain.Entities.BaseEntity.PropertyChanging">
+            <summary>
+            Property changing event handler
+            </summary>
+        </member>
+        <member name="M:Bowling.Domain.Entities.Attendee.#ctor(Bowling.Domain.Entities.Bowler,Bowling.Domain.Entities.Event,Bowling.Domain.Entities.FoodOption)">
+            <summary>
+            only constructor
+            </summary>
+            <param name="bowler"></param>
+            <param name="bowlingEvent"></param>
+            <param name="foodOption"></param>
+        </member>
+        <member name="P:Bowling.Domain.Entities.Attendee.Bowler">
+            <summary>
+            Bowler who attended event
+            </summary>
+        </member>
+        <member name="P:Bowling.Domain.Entities.Attendee.Event">
+            <summary>
+            Event Attended
+            </summary>
+        </member>
+        <member name="P:Bowling.Domain.Entities.Attendee.FoodOption">
+            <summary>
+            Choice of food
+            </summary>
+        </member>
+        <member name="P:Bowling.Domain.Entities.Attendee.Paid">
+            <summary>
+            Has the bowler paid for the event
+            </summary>
+        </member>
+        <member name="P:Bowling.Domain.Entities.Attendee.PaidDateTime">
+            <summary>
+            Date and Time bowler paid for the event
+            </summary>
+        </member>
+        <member name="P:Bowling.Domain.Entities.Attendee.SignUpDateTime">
+            <summary>
+            Date and Time Bowler signed up for the event
+            </summary>
+        </member>
+        <member name="P:Bowling.Domain.Entities.Attendee.Results">
+            <summary>
+            Bowling scores
+            </summary>
+        </member>
+        <member name="T:Bowling.Domain.Entities.Bowler">
+            <summary>
+            A Bowler
+            </summary>
+        </member>
+        <member name="P:Bowling.Domain.Entities.Bowler.Name">
+            <summary>
+            Display name of bowler
+            </summary>
+        </member>
+        <member name="P:Bowling.Domain.Entities.Bowler.Attendees">
+            <summary>
+            List of all the times the bowler was an attendee of an event
+            </summary>
+        </member>
+        <member name="T:Bowling.Domain.Entities.Event">
+            <summary>
+            Bowling event night
+            </summary>
+        </member>
+        <member name="P:Bowling.Domain.Entities.Event.Name">
+            <summary>
+            Name of event
+            </summary>
+        </member>
+        <member name="P:Bowling.Domain.Entities.Event.Description">
+            <summary>
+            Event description
+            </summary>
+        </member>
+        <member name="P:Bowling.Domain.Entities.Event.Price">
+            <summary>
+            Price
+            </summary>
+        </member>
+        <member name="P:Bowling.Domain.Entities.Event.Attendees">
+            <summary>
+            List of Bowlers attending event
+            </summary>
+        </member>
+    </members>
+</doc>

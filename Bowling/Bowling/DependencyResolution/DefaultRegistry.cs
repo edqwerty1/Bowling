@@ -16,8 +16,17 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace Bowling.DependencyResolution {
+    using Bowling.Models;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
+    using Microsoft.Owin.Security;
     using StructureMap.Configuration.DSL;
     using StructureMap.Graph;
+    using StructureMap.Web;
+    using System.Data.Entity;
+    using System.Web;
+    using System.Web.Mvc;
+
 	
     public class DefaultRegistry : Registry {
         #region Constructors and Destructors
@@ -26,8 +35,14 @@ namespace Bowling.DependencyResolution {
             Scan(
                 scan => {
                     scan.TheCallingAssembly();
+                    scan.AssembliesFromApplicationBaseDirectory(assembly => !assembly.FullName.StartsWith("System.Web"));
+                    scan.AddAllTypesOf<IHttpModule>();
                     scan.WithDefaultConventions();
                 });
+            For<IUserStore<ApplicationUser>>().Use<UserStore<ApplicationUser>>();
+            For<IAuthenticationManager>().Use(() => System.Web.HttpContext.Current.GetOwinContext().Authentication);
+            For<DbContext>().HybridHttpOrThreadLocalScoped().Use<ApplicationDbContext>();
+
             //For<IExample>().Use<Example>();
         }
 

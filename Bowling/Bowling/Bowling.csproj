@@ -29,6 +29,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>app_Data\XmlDocument.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -368,15 +369,15 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Bowling.Domain\Bowling.Domain.csproj">
+    <ProjectReference Include="..\Bowling.Domain\Bowling.Domain.csproj">
       <Project>{84ca4a73-6a8e-4ac8-9039-7beeae9940a2}</Project>
       <Name>Bowling.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Bowling.Services\Bowling.Services.csproj">
+    <ProjectReference Include="..\Bowling.Services\Bowling.Services.csproj">
       <Project>{2e86fc57-0ff6-46e7-a7ac-419ee0cc4829}</Project>
       <Name>Bowling.Services</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\StructureMapRegistries\Bowling.StructureMapRegistries.csproj">
+    <ProjectReference Include="..\StructureMapRegistries\Bowling.StructureMapRegistries.csproj">
       <Project>{3491da40-31e3-46ea-9637-3a2f51a4b016}</Project>
       <Name>Bowling.StructureMapRegistries</Name>
     </ProjectReference>
@@ -409,6 +410,9 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <PropertyGroup>
+    <PostBuildEvent>copy $(SolutionDir)Bowling.Domain\XmlDocument.xml $(ProjectDir)App_Data\Bowling.xml</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

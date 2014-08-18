@@ -16,9 +16,11 @@ namespace Bowling.Areas.WebAPI
         {
             context.MapRoute(
                 "WebAPI_default",
-                "WebAPI/{controller}/{action}/{id}",
+                "WebAPI/{controller}/{id}",
                 new { action = "Index", id = UrlParameter.Optional }
             );
+
+
         }
     }
 }

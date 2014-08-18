@@ -330,3 +330,4 @@ C:\Users\EdUser\Documents\GitHub\Bowling\Bowling\Bowling\bin\StructureMap.Net4.p
 C:\Users\EdUser\Documents\GitHub\Bowling\Bowling\Bowling\bin\StructureMap.Web.pdb
 C:\Users\EdUser\Documents\GitHub\Bowling\Bowling\Bowling\bin\StructureMap.Web.xml
 C:\Users\EdUser\Documents\GitHub\Bowling\Bowling\Bowling\bin\Bowling.Services.Implementation.pdb
+C:\Users\EdUser\Documents\GitHub\Bowling\Bowling\Bowling\bin\XmlDocument.xml

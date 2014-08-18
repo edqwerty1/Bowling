@@ -25,6 +25,7 @@ namespace Bowling.Models
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
+            Database.SetInitializer<ApplicationDbContext>(null);
         }
 
         public static ApplicationDbContext Create()
@@ -32,6 +33,5 @@ namespace Bowling.Models
             return new ApplicationDbContext();
         }
 
-        public System.Data.Entity.DbSet<Bowling.Domain.Entities.Bowler> Bowlers { get; set; }
     }
 }
