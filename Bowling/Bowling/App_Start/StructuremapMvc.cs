@@ -30,6 +30,8 @@ namespace Bowling.App_Start {
 	using Bowling.DependencyResolution;
 
     using StructureMap;
+    using System.Web.Http.Dispatcher;
+    using System.Web.Http;
     
 	public static class StructuremapMvc {
         #region Public Properties
@@ -49,6 +51,7 @@ namespace Bowling.App_Start {
             StructureMapDependencyScope = new StructureMapDependencyScope(container);
             DependencyResolver.SetResolver(StructureMapDependencyScope);
             DynamicModuleUtility.RegisterModule(typeof(StructureMapScopeModule));
+            GlobalConfiguration.Configuration.Services.Replace(typeof(IHttpControllerActivator), new ServiceActivator(container));
         }
 
         #endregion

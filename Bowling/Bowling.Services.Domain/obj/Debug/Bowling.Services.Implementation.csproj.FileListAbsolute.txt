@@ -53,10 +53,7 @@ C:\Users\EdUser\Documents\GitHub\Bowling\Bowling\Bowling.Services.Domain\bin\Deb
 C:\Users\EdUser\Documents\GitHub\Bowling\Bowling\Bowling.Services.Domain\bin\Debug\Bowling.Services.dll
 C:\Users\EdUser\Documents\GitHub\Bowling\Bowling\Bowling.Services.Domain\bin\Debug\EntityFramework.dll
 C:\Users\EdUser\Documents\GitHub\Bowling\Bowling\Bowling.Services.Domain\bin\Debug\Bowling.Core.dll
-C:\Users\EdUser\Documents\GitHub\Bowling\Bowling\Bowling.Services.Domain\bin\Debug\StructureMap.dll
 C:\Users\EdUser\Documents\GitHub\Bowling\Bowling\Bowling.Services.Domain\bin\Debug\Bowling.Domain.pdb
 C:\Users\EdUser\Documents\GitHub\Bowling\Bowling\Bowling.Services.Domain\bin\Debug\Bowling.Services.pdb
 C:\Users\EdUser\Documents\GitHub\Bowling\Bowling\Bowling.Services.Domain\bin\Debug\EntityFramework.xml
 C:\Users\EdUser\Documents\GitHub\Bowling\Bowling\Bowling.Services.Domain\bin\Debug\Bowling.Core.pdb
-C:\Users\EdUser\Documents\GitHub\Bowling\Bowling\Bowling.Services.Domain\bin\Debug\StructureMap.pdb
-C:\Users\EdUser\Documents\GitHub\Bowling\Bowling\Bowling.Services.Domain\bin\Debug\StructureMap.xml

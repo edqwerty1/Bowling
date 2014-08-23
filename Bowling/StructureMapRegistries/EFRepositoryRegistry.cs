@@ -21,21 +21,21 @@ namespace Bowling.Domain.Concrete.EntityFramework
       /// <param name="getConnectionString">Function returning the connection string</param>
       public EFRepositoryRegistry(Func<string> getConnectionString)
       {
-          For<IUnitOfWorkFactory>().Use<UnitOfWorkFactory>();
+         // For<IUnitOfWorkFactory>().Use<UnitOfWorkFactory>();
 
-          For<IUnitOfWorkFactoryProvider>().Use<UnitOfWorkFactoryProvider>()
-                            .Ctor<Func<IEnumerable<IUnitOfWorkFactory>>>("providerFactory")
-                            .Is(() => new IUnitOfWorkFactory[]{ObjectFactory.GetInstance<IUnitOfWorkFactory>()});
+         // For<IUnitOfWorkFactoryProvider>().Use<UnitOfWorkFactoryProvider>()
+         //                   .Ctor<Func<IEnumerable<IUnitOfWorkFactory>>>("providerFactory")
+         //                   .Is(() => new IUnitOfWorkFactory[]{ObjectFactory.GetInstance<IUnitOfWorkFactory>()});
 
-          For(typeof(IUnitOfWork<>)).Use(x => UnitOfWork.GetCurrent<Bowler>());
+         // For(typeof(IUnitOfWork<>)).Use(x => UnitOfWork.GetCurrent<Bowler>());
 
-          For(typeof(IRepository<>)).Use(typeof(Repository<>));//.Ctor<IUnitOfWork<object>>("unitOfWork");
-          //For(typeof(IUnitOfWork)).Use(typeof(UnitOfWork));
+         // For(typeof(IRepository<>)).Use(typeof(Repository<>));//.Ctor<IUnitOfWork<object>>("unitOfWork");
+         // //For(typeof(IUnitOfWork)).Use(typeof(UnitOfWork));
 
-         //Pass the InsightDB connection string text in rather than using letting EntityFramework used the named version 
-         //as it overrides the caching provider with the System.Data.SqlClient provider
-         For<DataContext>().HybridHttpOrThreadLocalScoped().Use<DataContext>()
-            .Ctor<string>("connectionString").Is(getConnectionString());
+         ////Pass the InsightDB connection string text in rather than using letting EntityFramework used the named version 
+         ////as it overrides the caching provider with the System.Data.SqlClient provider
+         //For<DataContext>().HybridHttpOrThreadLocalScoped().Use<DataContext>()
+         //   .Ctor<string>("connectionString").Is(getConnectionString());
 
          //For<DataContext>().HybridHttpOrThreadLocalScoped().Use(o => new DataContext("InsightDB", false));
       }

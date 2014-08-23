@@ -761,6 +761,277 @@
             </summary>
             <param name="managementContext">Management model only</param>
         </member>
+        <member name="T:Bowling.Domain.Concrete.EntityFramework.EFRepository`1">
+            <summary>
+            Base generic repository implementation
+            </summary>
+            <typeparam name="T">Type of the repository</typeparam>
+        </member>
+        <member name="T:Bowling.Domain.Concrete.EntityFramework.Repository`1">
+            <summary>
+            Represents a repository of items.
+            </summary>
+            <typeparam name="T">The <see cref="T:System.Type">type</see> of item in the repository.</typeparam>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.Repository`1.#ctor(Bowling.Domain.Abstract.IUnitOfWork{`0})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bowling.Domain.Concrete.EntityFramework.Repository`1"/> class.
+            </summary>
+            <param name="unitOfWork">The <see cref="T:Bowling.Domain.Abstract.IUnitOfWork`1">unit of work</see> used to manage changes to items in the repository.</param>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.Repository`1.OnPropertyChanged(System.ComponentModel.PropertyChangedEventArgs)">
+            <summary>
+            Raises the <see cref="E:PropertyChanged"/> event.
+            </summary>
+            <param name="e">The <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> event data.</param>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.Repository`1.GetAsync(System.Func{System.Linq.IQueryable{`0},System.Linq.IQueryable{`0}},System.Threading.CancellationToken)">
+            <summary>
+            Retrieves all items in the repository satisfied by the specified query asynchronously.
+            </summary>
+            <param name="queryShaper">The <see cref="T:System.Func`2">function</see> that shapes the <see cref="T:System.Linq.IQueryable`1">query</see> to execute.</param>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken">cancellation token</see> that can be used to cancel the operation.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1">task</see> containing the retrieved <see cref="T:System.Collections.Generic.IEnumerable`1">sequence</see> of <typeparamref name="T">items</typeparamref>.</returns>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.Repository`1.GetAsync``1(System.Func{System.Linq.IQueryable{`0},``0},System.Threading.CancellationToken)">
+            <summary>
+            Retrieves a query result asynchronously.
+            </summary>
+            <typeparam name="TResult">The <see cref="T:System.Type">type</see> of result to retrieve.</typeparam>
+            <param name="queryShaper">The <see cref="T:System.Func`2">function</see> that shapes the <see cref="T:System.Linq.IQueryable`1">query</see> to execute.</param>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken">cancellation token</see> that can be used to cancel the operation.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1">task</see> containing the <typeparamref name="TResult">result</typeparamref> of the operation.</returns>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.Repository`1.Add(`0)">
+            <summary>
+            Adds a new item to the repository.
+            </summary>
+            <param name="item">The new item to add.</param>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.Repository`1.Remove(`0)">
+            <summary>
+            Removes an item from the repository.
+            </summary>
+            <param name="item">The item to remove.</param>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.Repository`1.Update(`0)">
+            <summary>
+            Updates an existing item in the repository.
+            </summary>
+            <param name="item">The item to update.</param>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.Repository`1.DiscardChanges">
+            <summary>
+            Discards all changes to the items within the repository, if any.
+            </summary>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.Repository`1.SaveChangesAsync(System.Threading.CancellationToken)">
+            <summary>
+            Saves all pending changes in the repository asynchronously.
+            </summary>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken">cancellation token</see> that can be used to cancel the operation.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task">task</see> representing the save operation.</returns>
+        </member>
+        <member name="P:Bowling.Domain.Concrete.EntityFramework.Repository`1.UnitOfWorkStore">
+            <summary>
+            Gets the unit of work used to add and remove items to the repository.
+            </summary>
+            <value>The <see cref="T:Bowling.Domain.Abstract.IUnitOfWork`1">unit of work</see> used to add and remove items.</value>
+        </member>
+        <member name="P:Bowling.Domain.Concrete.EntityFramework.Repository`1.HasPendingChanges">
+            <summary>
+            Gets a value indicating whether there are any pending, uncommitted changes.
+            </summary>
+            <value>True if there are any pending uncommitted changes; otherwise, false.</value>
+        </member>
+        <member name="E:Bowling.Domain.Concrete.EntityFramework.Repository`1.PropertyChanged">
+            <summary>
+            Occurs when a property value changes.
+            </summary>
+            <remarks>The <seealso cref="E:Bowling.Domain.Concrete.EntityFramework.Repository`1.PropertyChanged"/> event can indicate all properties on the object have changed by using either
+            <see langkeyword="null">null</see> or <see cref="F:String.Empty"/> as the property name in the <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/>.</remarks>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.EFRepository`1.#ctor(Bowling.Domain.Concrete.EntityFramework.IDbContext)">
+            <summary>
+            Costructor
+            </summary>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.EFRepository`1.GetAsync(System.Func{System.Linq.IQueryable{`0},System.Linq.IQueryable{`0}},System.Threading.CancellationToken)">
+            <summary>
+            Retrieves all items in the repository satisfied by the specified query asynchronously.
+            </summary>
+            <param name="queryShaper">The <see cref="T:System.Func`2">function</see> that shapes the <see cref="T:System.Linq.IQueryable`1">query</see> to execute.</param>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken">cancellation token</see> that can be used to cancel the operation.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1">task</see> containing the retrieved <see cref="T:System.Collections.Generic.IEnumerable`1">sequence</see> of <typeparamref name="T">items</typeparamref>.</returns>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.EFRepository`1.GetAsync``1(System.Func{System.Linq.IQueryable{`0},``0},System.Threading.CancellationToken)">
+            <summary>
+            Retrieves a query result asynchronously.
+            </summary>
+            <typeparam name="TResult">The <see cref="T:System.Type">type</see> of result to retrieve.</typeparam>
+            <param name="queryShaper">The <see cref="T:System.Func`2">function</see> that shapes the <see cref="T:System.Linq.IQueryable`1">query</see> to execute.</param>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken">cancellation token</see> that can be used to cancel the operation.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1">task</see> containing the <typeparamref name="TResult">result</typeparamref> of the operation.</returns>
+        </member>
+        <member name="T:Bowling.Domain.Concrete.EntityFramework.UnitOfWork`1">
+            <summary>
+            Represents the base implementation for a unit of work.
+            </summary>
+            <typeparam name="T">The <see cref="T:System.Type">type</see> of items the unit of work contains.</typeparam>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.UnitOfWork`1.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bowling.Domain.Concrete.EntityFramework.UnitOfWork`1"/> class.
+            </summary>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.UnitOfWork`1.#ctor(System.Collections.Generic.IEqualityComparer{`0})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bowling.Domain.Concrete.EntityFramework.UnitOfWork`1"/> class.
+            </summary>
+            <param name="comparer">The <see cref="T:System.Collections.Generic.IEqualityComparer`1">comparer</see> used to comparer item equality.</param>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.UnitOfWork`1.OnPropertyChanged(System.String)">
+            <summary>
+            Raises the <see cref="E:PropertyChanged"/> event for the supplied property name.
+            </summary>
+            <param name="propertyName">The name of the property that changed. The default value is the name of the
+            member the method is invoked from<seealso cref="!:CallerMemberNameAttribute"/>.</param>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.UnitOfWork`1.OnPropertyChanged(System.ComponentModel.PropertyChangedEventArgs)">
+            <summary>
+            Raises the <see cref="E:PropertyChanged"/> event.
+            </summary>
+            <param name="e">The <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> event data.</param>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.UnitOfWork`1.AcceptChanges">
+            <summary>
+            Accepts all of the pending changes in the unit of work.
+            </summary>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.UnitOfWork`1.IsNew(`0)">
+            <summary>
+            Returns a value indicating whether the specified item is a new item.
+            </summary>
+            <param name="item">The <typeparamref name="T">item</typeparamref> to evaluate.</param>
+            <returns>True if the item is a new item; otherwise, false.</returns>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.UnitOfWork`1.RegisterNew(`0)">
+            <summary>
+            Registers a new item.
+            </summary>
+            <param name="item">The new  to register.</param>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.UnitOfWork`1.RegisterChanged(`0)">
+            <summary>
+            Registers a changed item.
+            </summary>
+            <param name="item">The changed <typeparamref name="T">item</typeparamref> to register.</param>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.UnitOfWork`1.RegisterRemoved(`0)">
+            <summary>
+            Registers a removed item.
+            </summary>
+            <param name="item">The removed <typeparamref name="T">item</typeparamref> to register.</param>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.UnitOfWork`1.Unregister(`0)">
+            <summary>
+            Unregisters an item.
+            </summary>
+            <param name="item">The <typeparamref name="T">item</typeparamref> to unregister.</param>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.UnitOfWork`1.Rollback">
+            <summary>
+            Rolls back all pending units of work.
+            </summary>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.UnitOfWork`1.CommitAsync(System.Threading.CancellationToken)">
+            <summary>
+            Commits all pending units of work asychronously.
+            </summary>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken">cancellation token</see> that can be used to cancel the operation.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task">task</see> representing the commit operation.</returns>
+        </member>
+        <member name="P:Bowling.Domain.Concrete.EntityFramework.UnitOfWork`1.Comparer">
+            <summary>
+            Gets the equality comparer used by the unit of work.
+            </summary>
+            <value>An <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> object.</value>
+        </member>
+        <member name="P:Bowling.Domain.Concrete.EntityFramework.UnitOfWork`1.InsertedItems">
+            <summary>
+            Gets a collection of the inserted units of work.
+            </summary>
+            <value>A <see cref="T:System.Collections.Generic.ICollection`1">collection</see> of inserted items.</value>
+        </member>
+        <member name="P:Bowling.Domain.Concrete.EntityFramework.UnitOfWork`1.UpdatedItems">
+            <summary>
+            Gets a collection of the updated units of work.
+            </summary>
+            <value>A <see cref="T:System.Collections.Generic.ICollection`1">collection</see> of updated items.</value>
+        </member>
+        <member name="P:Bowling.Domain.Concrete.EntityFramework.UnitOfWork`1.DeletedItems">
+            <summary>
+            Gets a collection of the deleted units of work.
+            </summary>
+            <value>A <see cref="T:System.Collections.Generic.ICollection`1">collection</see> of deleted items.</value>
+        </member>
+        <member name="P:Bowling.Domain.Concrete.EntityFramework.UnitOfWork`1.HasPendingChanges">
+            <summary>
+            Gets a value indicating whether there is an pending, uncommitted changes.
+            </summary>
+            <value>True if there are any pending uncommitted changes; otherwise, false.</value>
+        </member>
+        <member name="E:Bowling.Domain.Concrete.EntityFramework.UnitOfWork`1.PropertyChanged">
+            <summary>
+            Occurs when a property value changes.
+            </summary>
+            <remarks>The <seealso cref="E:Bowling.Domain.Concrete.EntityFramework.UnitOfWork`1.PropertyChanged"/> event can indicate all properties on the object have changed by using either
+            <see langkeyword="null">null</see> or <see cref="F:String.Empty"/> as the property name in the <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/>.</remarks>
+        </member>
+        <member name="T:Bowling.Domain.Concrete.EntityFramework.UnitOfWorkFactory">
+            <summary>
+            Represents the base implementation for a unit of work factory.
+            </summary>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.UnitOfWorkFactory.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bowling.Domain.Concrete.EntityFramework.UnitOfWorkFactory"/> class.
+            </summary>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.UnitOfWorkFactory.RegisterFactoryMethod``1(System.Func{Bowling.Domain.Abstract.IUnitOfWork{``0}})">
+            <summary>
+            Registers a factory method for a type of unit of work.
+            </summary>
+            <typeparam name="TItem">The <see cref="T:System.Type">type</see> of item to register a unit of work factory for.</typeparam>
+            <param name="factory">A <see cref="T:System.Func`1">function</see> representing the factory method to create units of work.</param>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.UnitOfWorkFactory.Create``1">
+            <summary>
+            Returns a new unit of work.
+            </summary>
+            <typeparam name="TItem">The <see cref="T:System.Type">type</see> of item to create a <see cref="T:Bowling.Domain.Abstract.IUnitOfWork`1">unit of work</see> for.</typeparam>
+            <returns>A <see cref="T:Bowling.Domain.Abstract.IUnitOfWork`1">unit of work</see>.</returns>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.UnitOfWorkFactory.GetCurrent``1">
+            <summary>
+            Returns the current unit of work.
+            </summary>
+            <typeparam name="TItem">The <see cref="T:System.Type">type</see> of item to retrieve a <see cref="T:Bowling.Domain.Abstract.IUnitOfWork`1">unit of work</see> for.</typeparam>
+            <returns>A <see cref="T:Bowling.Domain.Abstract.IUnitOfWork`1">unit of work</see>.</returns>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.UnitOfWorkFactory.SetCurrent``1(Bowling.Domain.Abstract.IUnitOfWork{``0})">
+            <summary>
+            Sets the current unit of work for a given type.
+            </summary>
+            <typeparam name="TItem">The <see cref="T:System.Type">type</see> of item to set a <see cref="T:Bowling.Domain.Abstract.IUnitOfWork`1">unit of work</see> for.</typeparam>
+            <param name="unitOfWork">The current <see cref="T:Bowling.Domain.Abstract.IUnitOfWork`1">unit of work</see>.</param>
+        </member>
+        <member name="P:Bowling.Domain.Concrete.EntityFramework.UnitOfWorkFactory.Specification">
+            <summary>
+            Gets the specification associated with the factory.
+            </summary>
+            <value>A <see cref="T:Bowling.Domain.Abstract.ISpecification`1"/> object.</value>
+        </member>
         <member name="T:Bowling.Domain.Concrete.EntityFramework.LogicalAndSpecification`1">
             <summary>
             Represents a specification that models a logical 'And' expression <seealso cref="T:Bowling.Domain.Concrete.EntityFramework.Specification`1"/>.
@@ -986,90 +1257,6 @@
             </summary>
             <value>The total count of all items.</value>
         </member>
-        <member name="T:Bowling.Domain.Concrete.EntityFramework.Repository`1">
-            <summary>
-            Represents a repository of items.
-            </summary>
-            <typeparam name="T">The <see cref="T:System.Type">type</see> of item in the repository.</typeparam>
-        </member>
-        <member name="M:Bowling.Domain.Concrete.EntityFramework.Repository`1.#ctor(Bowling.Domain.Abstract.IUnitOfWork{`0})">
-            <summary>
-            Initializes a new instance of the <see cref="T:Bowling.Domain.Concrete.EntityFramework.Repository`1"/> class.
-            </summary>
-            <param name="unitOfWork">The <see cref="T:Bowling.Domain.Abstract.IUnitOfWork`1">unit of work</see> used to manage changes to items in the repository.</param>
-        </member>
-        <member name="M:Bowling.Domain.Concrete.EntityFramework.Repository`1.OnPropertyChanged(System.ComponentModel.PropertyChangedEventArgs)">
-            <summary>
-            Raises the <see cref="E:PropertyChanged"/> event.
-            </summary>
-            <param name="e">The <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> event data.</param>
-        </member>
-        <member name="M:Bowling.Domain.Concrete.EntityFramework.Repository`1.GetAsync(System.Func{System.Linq.IQueryable{`0},System.Linq.IQueryable{`0}},System.Threading.CancellationToken)">
-            <summary>
-            Retrieves all items in the repository satisfied by the specified query asynchronously.
-            </summary>
-            <param name="queryShaper">The <see cref="T:System.Func`2">function</see> that shapes the <see cref="T:System.Linq.IQueryable`1">query</see> to execute.</param>
-            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken">cancellation token</see> that can be used to cancel the operation.</param>
-            <returns>A <see cref="T:System.Threading.Tasks.Task`1">task</see> containing the retrieved <see cref="T:System.Collections.Generic.IEnumerable`1">sequence</see> of <typeparamref name="T">items</typeparamref>.</returns>
-        </member>
-        <member name="M:Bowling.Domain.Concrete.EntityFramework.Repository`1.GetAsync``1(System.Func{System.Linq.IQueryable{`0},``0},System.Threading.CancellationToken)">
-            <summary>
-            Retrieves a query result asynchronously.
-            </summary>
-            <typeparam name="TResult">The <see cref="T:System.Type">type</see> of result to retrieve.</typeparam>
-            <param name="queryShaper">The <see cref="T:System.Func`2">function</see> that shapes the <see cref="T:System.Linq.IQueryable`1">query</see> to execute.</param>
-            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken">cancellation token</see> that can be used to cancel the operation.</param>
-            <returns>A <see cref="T:System.Threading.Tasks.Task`1">task</see> containing the <typeparamref name="TResult">result</typeparamref> of the operation.</returns>
-        </member>
-        <member name="M:Bowling.Domain.Concrete.EntityFramework.Repository`1.Add(`0)">
-            <summary>
-            Adds a new item to the repository.
-            </summary>
-            <param name="item">The new item to add.</param>
-        </member>
-        <member name="M:Bowling.Domain.Concrete.EntityFramework.Repository`1.Remove(`0)">
-            <summary>
-            Removes an item from the repository.
-            </summary>
-            <param name="item">The item to remove.</param>
-        </member>
-        <member name="M:Bowling.Domain.Concrete.EntityFramework.Repository`1.Update(`0)">
-            <summary>
-            Updates an existing item in the repository.
-            </summary>
-            <param name="item">The item to update.</param>
-        </member>
-        <member name="M:Bowling.Domain.Concrete.EntityFramework.Repository`1.DiscardChanges">
-            <summary>
-            Discards all changes to the items within the repository, if any.
-            </summary>
-        </member>
-        <member name="M:Bowling.Domain.Concrete.EntityFramework.Repository`1.SaveChangesAsync(System.Threading.CancellationToken)">
-            <summary>
-            Saves all pending changes in the repository asynchronously.
-            </summary>
-            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken">cancellation token</see> that can be used to cancel the operation.</param>
-            <returns>A <see cref="T:System.Threading.Tasks.Task">task</see> representing the save operation.</returns>
-        </member>
-        <member name="P:Bowling.Domain.Concrete.EntityFramework.Repository`1.UnitOfWork">
-            <summary>
-            Gets the unit of work used to add and remove items to the repository.
-            </summary>
-            <value>The <see cref="T:Bowling.Domain.Abstract.IUnitOfWork`1">unit of work</see> used to add and remove items.</value>
-        </member>
-        <member name="P:Bowling.Domain.Concrete.EntityFramework.Repository`1.HasPendingChanges">
-            <summary>
-            Gets a value indicating whether there are any pending, uncommitted changes.
-            </summary>
-            <value>True if there are any pending uncommitted changes; otherwise, false.</value>
-        </member>
-        <member name="E:Bowling.Domain.Concrete.EntityFramework.Repository`1.PropertyChanged">
-            <summary>
-            Occurs when a property value changes.
-            </summary>
-            <remarks>The <seealso cref="E:Bowling.Domain.Concrete.EntityFramework.Repository`1.PropertyChanged"/> event can indicate all properties on the object have changed by using either
-            <see langkeyword="null">null</see> or <see cref="F:String.Empty"/> as the property name in the <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/>.</remarks>
-        </member>
         <member name="T:Bowling.Domain.Concrete.EntityFramework.Specification`1">
             <summary>
             Represents a specification that executes a user-defined <see cref="T:System.Func`2">function</see>.
@@ -1153,50 +1340,6 @@
             </summary>
             <typeparam name="T">The <see cref="T:System.Type">type</see> to create a unit of work for.</typeparam>
         </member>
-        <member name="T:Bowling.Domain.Concrete.EntityFramework.UnitOfWorkFactory">
-            <summary>
-            Represents the base implementation for a unit of work factory.
-            </summary>
-        </member>
-        <member name="M:Bowling.Domain.Concrete.EntityFramework.UnitOfWorkFactory.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:Bowling.Domain.Concrete.EntityFramework.UnitOfWorkFactory"/> class.
-            </summary>
-        </member>
-        <member name="M:Bowling.Domain.Concrete.EntityFramework.UnitOfWorkFactory.RegisterFactoryMethod``1(System.Func{Bowling.Domain.Abstract.IUnitOfWork{``0}})">
-            <summary>
-            Registers a factory method for a type of unit of work.
-            </summary>
-            <typeparam name="TItem">The <see cref="T:System.Type">type</see> of item to register a unit of work factory for.</typeparam>
-            <param name="factory">A <see cref="T:System.Func`1">function</see> representing the factory method to create units of work.</param>
-        </member>
-        <member name="M:Bowling.Domain.Concrete.EntityFramework.UnitOfWorkFactory.Create``1">
-            <summary>
-            Returns a new unit of work.
-            </summary>
-            <typeparam name="TItem">The <see cref="T:System.Type">type</see> of item to create a <see cref="T:Bowling.Domain.Abstract.IUnitOfWork`1">unit of work</see> for.</typeparam>
-            <returns>A <see cref="T:Bowling.Domain.Abstract.IUnitOfWork`1">unit of work</see>.</returns>
-        </member>
-        <member name="M:Bowling.Domain.Concrete.EntityFramework.UnitOfWorkFactory.GetCurrent``1">
-            <summary>
-            Returns the current unit of work.
-            </summary>
-            <typeparam name="TItem">The <see cref="T:System.Type">type</see> of item to retrieve a <see cref="T:Bowling.Domain.Abstract.IUnitOfWork`1">unit of work</see> for.</typeparam>
-            <returns>A <see cref="T:Bowling.Domain.Abstract.IUnitOfWork`1">unit of work</see>.</returns>
-        </member>
-        <member name="M:Bowling.Domain.Concrete.EntityFramework.UnitOfWorkFactory.SetCurrent``1(Bowling.Domain.Abstract.IUnitOfWork{``0})">
-            <summary>
-            Sets the current unit of work for a given type.
-            </summary>
-            <typeparam name="TItem">The <see cref="T:System.Type">type</see> of item to set a <see cref="T:Bowling.Domain.Abstract.IUnitOfWork`1">unit of work</see> for.</typeparam>
-            <param name="unitOfWork">The current <see cref="T:Bowling.Domain.Abstract.IUnitOfWork`1">unit of work</see>.</param>
-        </member>
-        <member name="P:Bowling.Domain.Concrete.EntityFramework.UnitOfWorkFactory.Specification">
-            <summary>
-            Gets the specification associated with the factory.
-            </summary>
-            <value>A <see cref="T:Bowling.Domain.Abstract.ISpecification`1"/> object.</value>
-        </member>
         <member name="T:Bowling.Domain.Concrete.EntityFramework.UnitOfWork.UncommittableUnitOfWork`1">
             <summary>
             Represents an uncommittable unit of work.
@@ -1205,121 +1348,6 @@
             <remarks>This class is internally used to satisfy the Null Object pattern. This allows unit testing and
             other scenarios without requiring a unit of work to be registered.  When an attempt is made to commit
             work against this class is performed, an <see cref="T:System.InvalidOperationException"/> is thrown.</remarks>
-        </member>
-        <member name="T:Bowling.Domain.Concrete.EntityFramework.UnitOfWork`1">
-            <summary>
-            Represents the base implementation for a unit of work.
-            </summary>
-            <typeparam name="T">The <see cref="T:System.Type">type</see> of items the unit of work contains.</typeparam>
-        </member>
-        <member name="M:Bowling.Domain.Concrete.EntityFramework.UnitOfWork`1.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:Bowling.Domain.Concrete.EntityFramework.UnitOfWork`1"/> class.
-            </summary>
-        </member>
-        <member name="M:Bowling.Domain.Concrete.EntityFramework.UnitOfWork`1.#ctor(System.Collections.Generic.IEqualityComparer{`0})">
-            <summary>
-            Initializes a new instance of the <see cref="T:Bowling.Domain.Concrete.EntityFramework.UnitOfWork`1"/> class.
-            </summary>
-            <param name="comparer">The <see cref="T:System.Collections.Generic.IEqualityComparer`1">comparer</see> used to comparer item equality.</param>
-        </member>
-        <member name="M:Bowling.Domain.Concrete.EntityFramework.UnitOfWork`1.OnPropertyChanged(System.String)">
-            <summary>
-            Raises the <see cref="E:PropertyChanged"/> event for the supplied property name.
-            </summary>
-            <param name="propertyName">The name of the property that changed. The default value is the name of the
-            member the method is invoked from<seealso cref="!:CallerMemberNameAttribute"/>.</param>
-        </member>
-        <member name="M:Bowling.Domain.Concrete.EntityFramework.UnitOfWork`1.OnPropertyChanged(System.ComponentModel.PropertyChangedEventArgs)">
-            <summary>
-            Raises the <see cref="E:PropertyChanged"/> event.
-            </summary>
-            <param name="e">The <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> event data.</param>
-        </member>
-        <member name="M:Bowling.Domain.Concrete.EntityFramework.UnitOfWork`1.AcceptChanges">
-            <summary>
-            Accepts all of the pending changes in the unit of work.
-            </summary>
-        </member>
-        <member name="M:Bowling.Domain.Concrete.EntityFramework.UnitOfWork`1.IsNew(`0)">
-            <summary>
-            Returns a value indicating whether the specified item is a new item.
-            </summary>
-            <param name="item">The <typeparamref name="T">item</typeparamref> to evaluate.</param>
-            <returns>True if the item is a new item; otherwise, false.</returns>
-        </member>
-        <member name="M:Bowling.Domain.Concrete.EntityFramework.UnitOfWork`1.RegisterNew(`0)">
-            <summary>
-            Registers a new item.
-            </summary>
-            <param name="item">The new  to register.</param>
-        </member>
-        <member name="M:Bowling.Domain.Concrete.EntityFramework.UnitOfWork`1.RegisterChanged(`0)">
-            <summary>
-            Registers a changed item.
-            </summary>
-            <param name="item">The changed <typeparamref name="T">item</typeparamref> to register.</param>
-        </member>
-        <member name="M:Bowling.Domain.Concrete.EntityFramework.UnitOfWork`1.RegisterRemoved(`0)">
-            <summary>
-            Registers a removed item.
-            </summary>
-            <param name="item">The removed <typeparamref name="T">item</typeparamref> to register.</param>
-        </member>
-        <member name="M:Bowling.Domain.Concrete.EntityFramework.UnitOfWork`1.Unregister(`0)">
-            <summary>
-            Unregisters an item.
-            </summary>
-            <param name="item">The <typeparamref name="T">item</typeparamref> to unregister.</param>
-        </member>
-        <member name="M:Bowling.Domain.Concrete.EntityFramework.UnitOfWork`1.Rollback">
-            <summary>
-            Rolls back all pending units of work.
-            </summary>
-        </member>
-        <member name="M:Bowling.Domain.Concrete.EntityFramework.UnitOfWork`1.CommitAsync(System.Threading.CancellationToken)">
-            <summary>
-            Commits all pending units of work asychronously.
-            </summary>
-            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken">cancellation token</see> that can be used to cancel the operation.</param>
-            <returns>A <see cref="T:System.Threading.Tasks.Task">task</see> representing the commit operation.</returns>
-        </member>
-        <member name="P:Bowling.Domain.Concrete.EntityFramework.UnitOfWork`1.Comparer">
-            <summary>
-            Gets the equality comparer used by the unit of work.
-            </summary>
-            <value>An <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> object.</value>
-        </member>
-        <member name="P:Bowling.Domain.Concrete.EntityFramework.UnitOfWork`1.InsertedItems">
-            <summary>
-            Gets a collection of the inserted units of work.
-            </summary>
-            <value>A <see cref="T:System.Collections.Generic.ICollection`1">collection</see> of inserted items.</value>
-        </member>
-        <member name="P:Bowling.Domain.Concrete.EntityFramework.UnitOfWork`1.UpdatedItems">
-            <summary>
-            Gets a collection of the updated units of work.
-            </summary>
-            <value>A <see cref="T:System.Collections.Generic.ICollection`1">collection</see> of updated items.</value>
-        </member>
-        <member name="P:Bowling.Domain.Concrete.EntityFramework.UnitOfWork`1.DeletedItems">
-            <summary>
-            Gets a collection of the deleted units of work.
-            </summary>
-            <value>A <see cref="T:System.Collections.Generic.ICollection`1">collection</see> of deleted items.</value>
-        </member>
-        <member name="P:Bowling.Domain.Concrete.EntityFramework.UnitOfWork`1.HasPendingChanges">
-            <summary>
-            Gets a value indicating whether there is an pending, uncommitted changes.
-            </summary>
-            <value>True if there are any pending uncommitted changes; otherwise, false.</value>
-        </member>
-        <member name="E:Bowling.Domain.Concrete.EntityFramework.UnitOfWork`1.PropertyChanged">
-            <summary>
-            Occurs when a property value changes.
-            </summary>
-            <remarks>The <seealso cref="E:Bowling.Domain.Concrete.EntityFramework.UnitOfWork`1.PropertyChanged"/> event can indicate all properties on the object have changed by using either
-            <see langkeyword="null">null</see> or <see cref="F:String.Empty"/> as the property name in the <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/>.</remarks>
         </member>
         <member name="T:Bowling.Domain.Concrete.EntityFramework.UnitOfWorkFactoryProvider">
             <summary>

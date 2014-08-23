@@ -1,7 +1,10 @@
 ﻿using Bowling.Domain.Abstract;
 using Bowling.Domain.Concrete.EntityFramework;
+using Bowling.Domain.Entities;
+using StructureMap;
 using StructureMap.Configuration.DSL;
-
+using System;
+using System.Collections.Generic;
 namespace StructureMapRegistries
 {
    /// <summary>
@@ -15,8 +18,14 @@ namespace StructureMapRegistries
       /// </summary>
       public UnitOfWorkRegistry()
       {
-       //  For<IUnitOfWorkFactory>().Use<UnitOfWorkFactory>();
-        // For(typeof(IUnitOfWork<>)).Use();
+          For(typeof(IUnitOfWorkFactory<>)).Use(typeof(EFUnitOfWorkFactory<>));
+
+          //For<IUnitOfWorkFactoryProvider>().Use<UnitOfWorkFactoryProvider>()
+          //                  .Ctor<Func<IEnumerable<IUnitOfWorkFactory>>>("providerFactory")
+          //                  .Is(() => new IUnitOfWorkFactory[] { ObjectFactory.GetInstance<IUnitOfWorkFactory>() });
+
+
+         // For(typeof(IUnitOfWork<>)).Use(x => UnitOfWork.GetCurrent<Bowler>());
       }
    }
 }

@@ -12,9 +12,15 @@ using System.Collections.Generic;
 
 namespace Bowling.Areas.WebAPI.Controllers
 {
+     [RoutePrefix("api/Bowlers")]
     public class BowlersController : ApiController
     {
         private readonly IBowlerService bowlerService;
+
+         public BowlersController()
+        {
+
+        }
 
         public BowlersController(IBowlerService bowlerService)
         {

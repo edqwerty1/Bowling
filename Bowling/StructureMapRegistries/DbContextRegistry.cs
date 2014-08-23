@@ -21,7 +21,7 @@ namespace StructureMapRegistries
       /// </param>
       public DbContextRegistry()
       {
-         For<DataContext>().HybridHttpOrThreadLocalScoped().Use(o => new DataContext());
+         For<IDbContext>().HybridHttpOrThreadLocalScoped().Use(o => new DataContext());
          
 
       }
