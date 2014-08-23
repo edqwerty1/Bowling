@@ -49,3 +49,17 @@ C:\Users\EdUser\Documents\GitHub\Bowling\Bowling\Bowling.Services\bin\Debug\Bowl
 C:\Users\EdUser\Documents\GitHub\Bowling\Bowling\Bowling.Services\bin\Debug\Bowling.Domain.pdb
 C:\Users\EdUser\Documents\GitHub\Bowling\Bowling\Bowling.Services\bin\Debug\EntityFramework.xml
 C:\Users\EdUser\Documents\GitHub\Bowling\Bowling\Bowling.Services\bin\Debug\Bowling.Core.pdb
+G:\Bowling\Bowling\Bowling.Services\bin\Debug\Bowling.Services.dll
+G:\Bowling\Bowling\Bowling.Services\bin\Debug\Bowling.Services.pdb
+G:\Bowling\Bowling\Bowling.Services\bin\Debug\Bowling.Domain.dll
+G:\Bowling\Bowling\Bowling.Services\bin\Debug\EntityFramework.dll
+G:\Bowling\Bowling\Bowling.Services\bin\Debug\StructureMap.dll
+G:\Bowling\Bowling\Bowling.Services\bin\Debug\Bowling.Core.dll
+G:\Bowling\Bowling\Bowling.Services\bin\Debug\Bowling.Domain.pdb
+G:\Bowling\Bowling\Bowling.Services\bin\Debug\EntityFramework.xml
+G:\Bowling\Bowling\Bowling.Services\bin\Debug\StructureMap.pdb
+G:\Bowling\Bowling\Bowling.Services\bin\Debug\StructureMap.xml
+G:\Bowling\Bowling\Bowling.Services\bin\Debug\Bowling.Core.pdb
+G:\Bowling\Bowling\Bowling.Services\obj\Debug\Bowling.Services.csprojResolveAssemblyReference.cache
+G:\Bowling\Bowling\Bowling.Services\obj\Debug\Bowling.Services.dll
+G:\Bowling\Bowling\Bowling.Services\obj\Debug\Bowling.Services.pdb

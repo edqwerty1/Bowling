@@ -73,21 +73,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstract\IReadOnlyRepositoryContract{T}.cs" />
-    <Compile Include="Abstract\IReadOnlyRepository{T}.cs" />
-    <Compile Include="Abstract\IRepositoryContract{T}.cs" />
-    <Compile Include="Abstract\IRepositoryExtensions.cs" />
-    <Compile Include="Abstract\IRepository{T}.cs" />
-    <Compile Include="Abstract\ISpecificationContractT.cs" />
-    <Compile Include="Abstract\ISpecificationExtensions.cs" />
-    <Compile Include="Abstract\ISpecificationT.cs" />
-    <Compile Include="Abstract\IUnitOfWorkExtensions.cs" />
-    <Compile Include="Abstract\IUnitOfWorkFactoryContract.cs" />
-    <Compile Include="Abstract\IUnitOfWorkFactoryProvider.cs" />
-    <Compile Include="Abstract\IUnitOfWorkFactoryProviderContract.cs" />
-    <Compile Include="Abstract\IUnitOfWork{T}.cs" />
-    <Compile Include="Abstract\IUnitOfWorkContract{T}.cs" />
+    <Compile Include="Abstract\IRepository.cs" />
+    <Compile Include="Abstract\IUnitOfWork.cs" />
     <Compile Include="Abstract\IUnitOfWorkFactory.cs" />
+    <Compile Include="Abstract\UnitOfWork.cs" />
     <Compile Include="Concrete\EntityFramework\BaseContext.cs" />
     <Compile Include="Concrete\EntityFramework\BaseEntityMap.cs" />
     <Compile Include="Concrete\EntityFramework\DataContext.cs" />
@@ -95,24 +84,12 @@
     <Compile Include="Concrete\EntityFramework\EFUnitOfWork.cs" />
     <Compile Include="Concrete\EntityFramework\EFUnitOfWorkFactory.cs" />
     <Compile Include="Concrete\EntityFramework\IDbContext.cs" />
-    <Compile Include="Concrete\EntityFramework\LogicalAndSpecificationT.cs" />
-    <Compile Include="Concrete\EntityFramework\LogicalNotSpecificationT.cs" />
-    <Compile Include="Concrete\EntityFramework\LogicalOrSpecificationT.cs" />
     <Compile Include="Concrete\EntityFramework\Mapping\AttendeeMap.cs" />
     <Compile Include="Concrete\EntityFramework\Mapping\BowlerMap.cs" />
     <Compile Include="Concrete\EntityFramework\Mapping\EventMap.cs" />
     <Compile Include="Concrete\EntityFramework\Mapping\FoodOptionMap.cs" />
     <Compile Include="Concrete\EntityFramework\Mapping\ResultMap.cs" />
     <Compile Include="Concrete\EntityFramework\Mapping\RoundMap.cs" />
-    <Compile Include="Concrete\EntityFramework\PagedCollection{T}.cs" />
-    <Compile Include="Concrete\EntityFramework\Repository{T}.cs" />
-    <Compile Include="Concrete\EntityFramework\SpecificationBaseT.cs" />
-    <Compile Include="Concrete\EntityFramework\SpecificationT.cs" />
-    <Compile Include="Concrete\EntityFramework\UnitOfWork.cs" />
-    <Compile Include="Concrete\EntityFramework\UnitOfWorkContractT.cs" />
-    <Compile Include="Concrete\EntityFramework\UnitOfWorkFactory.cs" />
-    <Compile Include="Concrete\EntityFramework\UnitOfWorkFactoryProvider.cs" />
-    <Compile Include="Concrete\EntityFramework\UnitOfWorkT.cs" />
     <Compile Include="Entities\Attendee.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\Bowler.cs" />

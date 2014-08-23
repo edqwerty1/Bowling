@@ -18,14 +18,14 @@ namespace StructureMapRegistries
       /// </summary>
       public UnitOfWorkRegistry()
       {
-          For(typeof(IUnitOfWorkFactory<>)).Use(typeof(EFUnitOfWorkFactory<>));
+          For<IUnitOfWorkFactory>().Use<EFUnitOfWorkFactory>();
 
           //For<IUnitOfWorkFactoryProvider>().Use<UnitOfWorkFactoryProvider>()
           //                  .Ctor<Func<IEnumerable<IUnitOfWorkFactory>>>("providerFactory")
           //                  .Is(() => new IUnitOfWorkFactory[] { ObjectFactory.GetInstance<IUnitOfWorkFactory>() });
 
 
-         // For(typeof(IUnitOfWork<>)).Use(x => UnitOfWork.GetCurrent<Bowler>());
+          For<IUnitOfWork>().Use<EFUnitOfWork>();
       }
    }
 }
