@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<div id="body" class="Bowling" ng-app="bowlingApp">
+
+    <div id="bowerlsList" ng-controller="bowlersListController">
+        <div id="bowlersList">
+            <div ng-repeat="bowler in bowlers">
+                Bowler {{bowler.id}} {{bowler.name}}
+
+            </div>
+        </div>
+    </div>
+
+</div>
