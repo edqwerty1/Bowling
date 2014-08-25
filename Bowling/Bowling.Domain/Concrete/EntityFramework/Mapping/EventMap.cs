@@ -13,8 +13,8 @@ namespace Bowling.Domain.Concrete.EntityFramework.Mapping
         public EventMap()
         {
             this.ToTable("Events");
-            this.HasRequired(t => t.Name);
-            this.HasOptional(t => t.Description);
+            this.Property(t => t.Name).IsRequired().HasMaxLength(100);
+            this.Property(t => t.Description).IsOptional().HasMaxLength(500);
         }
     }
 }

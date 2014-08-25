@@ -6,7 +6,7 @@ namespace Bowling.Domain.Concrete.EntityFramework.Mapping
     /// <summary>
     /// Contact database field definition
     /// </summary>
-    class BowlerMap : EntityTypeConfiguration<Bowler>//: BaseEntityMap<Bowler>
+    class BowlerMap : BaseEntityMap<Bowler>//: BaseEntityMap<Bowler>
     {
         /// <summary>
         /// Define the table fields
@@ -14,7 +14,8 @@ namespace Bowling.Domain.Concrete.EntityFramework.Mapping
         public BowlerMap()
         {
             this.ToTable("Bowlers");
-            this.HasRequired(t => t.Name);
+            this.Property(t => t.Name).IsRequired();
+            this.Property(t => t.Name).HasMaxLength(50);
         }
     }
 }

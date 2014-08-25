@@ -13,7 +13,7 @@ namespace Bowling.Domain.Concrete.EntityFramework.Mapping
         public ResultMap()
         {
             this.ToTable("Results");
-            this.HasRequired(t => t.Attendee).WithMany();
+            this.HasRequired(t => t.Attendee).WithMany().WillCascadeOnDelete(false);
             this.HasRequired(t => t.Event).WithMany();
             this.HasMany(t => t.Rounds).WithRequired(t => t.Result);
         }

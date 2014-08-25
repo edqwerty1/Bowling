@@ -506,5 +506,31 @@
             The structure map dependency scope.
             </summary>
         </member>
+        <member name="T:Bowling.DependencyResolution.StructureMapWebApiDependencyResolver">
+            <summary>
+            The structure map dependency resolver.
+            </summary>
+        </member>
+        <member name="T:Bowling.DependencyResolution.StructureMapWebApiDependencyScope">
+            <summary>
+            The structure map web api dependency scope.
+            </summary>
+        </member>
+        <member name="M:Bowling.DependencyResolution.StructureMapWebApiDependencyResolver.#ctor(StructureMap.IContainer)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Bowling.DependencyResolution.StructureMapWebApiDependencyResolver"/> class.
+            </summary>
+            <param name="container">
+            The container.
+            </param>
+        </member>
+        <member name="M:Bowling.DependencyResolution.StructureMapWebApiDependencyResolver.BeginScope">
+            <summary>
+            The begin scope.
+            </summary>
+            <returns>
+            The System.Web.Http.Dependencies.IDependencyScope.
+            </returns>
+        </member>
     </members>
 </doc>

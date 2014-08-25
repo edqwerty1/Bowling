@@ -62,6 +62,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -84,6 +85,7 @@
     <Compile Include="Concrete\EntityFramework\EFUnitOfWork.cs" />
     <Compile Include="Concrete\EntityFramework\EFUnitOfWorkFactory.cs" />
     <Compile Include="Concrete\EntityFramework\IDbContext.cs" />
+    <Compile Include="Concrete\EntityFramework\IRepositoryExtensions.cs" />
     <Compile Include="Concrete\EntityFramework\Mapping\AttendeeMap.cs" />
     <Compile Include="Concrete\EntityFramework\Mapping\BowlerMap.cs" />
     <Compile Include="Concrete\EntityFramework\Mapping\EventMap.cs" />

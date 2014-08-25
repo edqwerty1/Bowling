@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace Bowling.Domain.Abstract
 {
@@ -11,6 +12,11 @@ namespace Bowling.Domain.Abstract
       /// Commit the unit of work
       /// </summary>
       void Commit();
+
+      /// <summary>
+      /// Commit the unit of work
+      /// </summary>
+      Task<int> CommitAsync();
 
       /// <summary>
       /// Check of the required entity is locked and has an entry in the lock table

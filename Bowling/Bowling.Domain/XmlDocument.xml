@@ -16,6 +16,44 @@
             </summary>
             <returns>Queryable containing all items in the repository</returns>
         </member>
+        <member name="M:Bowling.Domain.Abstract.IRepository`1.GetAsync(System.Func{System.Linq.IQueryable{`0},System.Linq.IQueryable{`0}},System.Threading.CancellationToken)">
+            <summary>
+            Retrieves all items in the repository satisfied by the specified query asynchronously.
+            </summary>
+            <param name="queryShaper">The <see cref="T:System.Func`2">function</see> that shapes the <see cref="T:System.Linq.IQueryable`1">query</see> to execute.</param>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken">cancellation token</see> that can be used to cancel the operation.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1">task</see> containing the retrieved <see cref="T:System.Collections.Generic.IEnumerable`1">sequence</see>
+            of <typeparamref name="T">items</typeparamref>.</returns>
+            <example>The following example demonstrates how to paginate the items in a repository using an example query.
+            <code><![CDATA[
+            using Microsoft.DesignPatterns.Examples;
+            using System;
+            using System.Collections.Generic;
+            using System.Linq;
+            using System.Threading;
+            using System.Threading.Tasks;
+            
+            public async static void Main()
+            {
+                var index = 0;
+                var repository = new MyRepository();
+                var cancellationToken = new CancellationToken();
+                
+                foreach ( var item in await repository.GetAsync( q => q.Where( i => i.FirstName.StartsWith( "Jo" ) ).OrderBy( i => i.LastName ), cancellationToken );
+                    Console.WriteLine( i => i.ToString() );
+            }
+            ]]>
+            </code></example>
+        </member>
+        <member name="M:Bowling.Domain.Abstract.IRepository`1.GetAsync``1(System.Func{System.Linq.IQueryable{`0},``0},System.Threading.CancellationToken)">
+            <summary>
+            Retrieves a query result asynchronously.
+            </summary>
+            <typeparam name="TResult">The <see cref="T:System.Type">type</see> of result to retrieve.</typeparam>
+            <param name="queryShaper">The <see cref="T:System.Func`2">function</see> that shapes the <see cref="T:System.Linq.IQueryable`1">query</see> to execute.</param>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken">cancellation token</see> that can be used to cancel the operation.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1">task</see> containing the <typeparamref name="TResult">result</typeparamref> of the operation.</returns>
+        </member>
         <member name="M:Bowling.Domain.Abstract.IRepository`1.Search(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
             <summary>
             Basic search method that allows filtering on the repository based on
@@ -116,6 +154,11 @@
             Commit the unit of work
             </summary>
         </member>
+        <member name="M:Bowling.Domain.Abstract.IUnitOfWork.CommitAsync">
+            <summary>
+            Commit the unit of work
+            </summary>
+        </member>
         <member name="M:Bowling.Domain.Abstract.IUnitOfWork.ContainsLockKey(System.Type,System.Int32)">
             <summary>
             Check of the required entity is locked and has an entry in the lock table
@@ -147,6 +190,12 @@
             </summary>
         </member>
         <member name="M:Bowling.Domain.Concrete.EntityFramework.IDbContext.SaveChanges">
+            <summary>
+            Save the changes to all entities within the current context
+            </summary>
+            <returns>Error code</returns>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.IDbContext.SaveChangesAsync">
             <summary>
             Save the changes to all entities within the current context
             </summary>
@@ -219,6 +268,12 @@
             <param name="entity">Entity to refresh</param>
         </member>
         <member name="M:Bowling.Domain.Concrete.EntityFramework.BaseContext.SaveChanges">
+            <summary>
+            Calls the DbContext SaveChanges. If it fails validation, it will be handled with our own exception
+            </summary>
+            <returns>Error code</returns>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.BaseContext.SaveChangesAsync">
             <summary>
             Calls the DbContext SaveChanges. If it fails validation, it will be handled with our own exception
             </summary>
@@ -306,6 +361,23 @@
             Get all data from the dbSet.  This takes into account the valid partitions for the user
             </summary>
             <returns>IQueriable containing all data</returns>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.EFRepository`1.GetAsync(System.Func{System.Linq.IQueryable{`0},System.Linq.IQueryable{`0}},System.Threading.CancellationToken)">
+            <summary>
+            Retrieves all items in the repository satisfied by the specified query asynchronously.
+            </summary>
+            <param name="queryShaper">The <see cref="T:System.Func`2">function</see> that shapes the <see cref="T:System.Linq.IQueryable`1">query</see> to execute.</param>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken">cancellation token</see> that can be used to cancel the operation.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1">task</see> containing the retrieved <see cref="T:System.Collections.Generic.IEnumerable`1">sequence</see> of <typeparamref name="T">items</typeparamref>.</returns>
+        </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.EFRepository`1.GetAsync``1(System.Func{System.Linq.IQueryable{`0},``0},System.Threading.CancellationToken)">
+            <summary>
+            Retrieves a query result asynchronously.
+            </summary>
+            <typeparam name="TResult">The <see cref="T:System.Type">type</see> of result to retrieve.</typeparam>
+            <param name="queryShaper">The <see cref="T:System.Func`2">function</see> that shapes the <see cref="T:System.Linq.IQueryable`1">query</see> to execute.</param>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken">cancellation token</see> that can be used to cancel the operation.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1">task</see> containing the <typeparamref name="TResult">result</typeparamref> of the operation.</returns>
         </member>
         <member name="M:Bowling.Domain.Concrete.EntityFramework.EFRepository`1.Search(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
             <summary>
@@ -435,6 +507,11 @@
             Commit the unit of work to the database
             </summary>
         </member>
+        <member name="M:Bowling.Domain.Concrete.EntityFramework.EFUnitOfWork.CommitAsync">
+            <summary>
+            Commit the unit of work to the database
+            </summary>
+        </member>
         <member name="M:Bowling.Domain.Concrete.EntityFramework.EFUnitOfWork.Dispose">
             <summary>
             Dispose the unit of work and associated contexts
@@ -466,6 +543,221 @@
             The database context being used
             </summary>
             <returns>Data context</returns>
+        </member>
+        <member name="T:Bowling.Domain.Abstract.IRepositoryExtensions">
+            <summary>
+            Provides extension methods for the <see cref="T:Bowling.Domain.Abstract.IRepository`1"/> and <see cref="T:Bowling.Domain.Abstract.IRepository`1"/> interfaces.
+            </summary>
+        </member>
+        <member name="M:Bowling.Domain.Abstract.IRepositoryExtensions.GetAsync``1(Bowling.Domain.Abstract.IRepository{``0},System.Func{System.Linq.IQueryable{``0},System.Linq.IQueryable{``0}})">
+            <summary>
+            Retrieves all items in the repository satisfied by the specified query asynchronously.
+            </summary>
+            <typeparam name="T">The <see cref="T:System.Type">type</see> of item in the repository.</typeparam>
+            <param name="repository">The extended <see cref="T:Bowling.Domain.Abstract.IRepository`1">repository</see>.</param>
+            <param name="queryShaper">The <see cref="T:System.Func`2">function</see> that shapes the <see cref="T:System.Linq.IQueryable`1">query</see> to execute.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1">task</see> containing the retrieved <see cref="T:System.Collections.Generic.IEnumerable`1">sequence</see>
+            of <typeparamref name="T">items</typeparamref>.</returns>
+            <example>The following example demonstrates how to paginate the items in a repository using an example query.
+            <code><![CDATA[
+            using Microsoft.DesignPatterns.Examples;
+            using System;
+            using System.Collections.Generic;
+            using System.Linq;
+            using System.Threading;
+            using System.Threading.Tasks;
+            
+            public async static void Main()
+            {
+                var index = 0;
+                var repository = new MyRepository();
+                
+                foreach ( var item in await repository.GetAsync( q => q.Where( i => i.FirstName.StartsWith( "Jo" ) ).OrderBy( i => i.LastName ) );
+                    Console.WriteLine( i => i.ToString() );
+            }
+            ]]>
+            </code></example>
+        </member>
+        <member name="M:Bowling.Domain.Abstract.IRepositoryExtensions.GetAsync``2(Bowling.Domain.Abstract.IRepository{``0},System.Func{System.Linq.IQueryable{``0},``1})">
+            <summary>
+            Retrieves a query result asynchronously.
+            </summary>
+            <typeparam name="T">The <see cref="T:System.Type">type</see> of item in the repository.</typeparam>
+            <typeparam name="TResult">The <see cref="T:System.Type">type</see> of result to retrieve.</typeparam>
+            <param name="repository">The extended <see cref="T:Bowling.Domain.Abstract.IRepository`1">repository</see>.</param>
+            <param name="queryShaper">The <see cref="T:System.Func`2">function</see> that shapes the <see cref="T:System.Linq.IQueryable`1">query</see> to execute.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1">task</see> containing the <typeparamref name="TResult">result</typeparamref> of the operation.</returns>
+        </member>
+        <member name="M:Bowling.Domain.Abstract.IRepositoryExtensions.GetAllAsync``1(Bowling.Domain.Abstract.IRepository{``0})">
+            <summary>
+            Retrieves all items in the repository asynchronously.
+            </summary>
+            <typeparam name="T">The <see cref="T:System.Type">type</see> of item in the repository.</typeparam>
+            <param name="repository">The extended <see cref="T:Bowling.Domain.Abstract.IRepository`1">repository</see>.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1">task</see> containing the <see cref="T:System.Collections.Generic.IEnumerable`1">sequence</see>
+            of all <typeparamref name="T">items</typeparamref> in the repository.</returns>
+            <example>The following example demonstrates how to retrieve all items in a repository.
+            <code><![CDATA[
+            using Microsoft.DesignPatterns.Examples;
+            using System;
+            using System.Collections.Generic;
+            using System.Linq;
+            using System.Threading;
+            using System.Threading.Tasks;
+            
+            public async static void Main()
+            {
+                var repository = new MyRepository();
+                
+                foreach ( var item in await repository.GetAllAsync( i => i.LastName == "Doe" ) )
+                    Console.WriteLine( item.ToString() );
+            }
+            ]]>
+            </code></example>
+        </member>
+        <member name="M:Bowling.Domain.Abstract.IRepositoryExtensions.GetAllAsync``1(Bowling.Domain.Abstract.IRepository{``0},System.Threading.CancellationToken)">
+            <summary>
+            Retrieves all items in the repository asynchronously.
+            </summary>
+            <typeparam name="T">The <see cref="T:System.Type">type</see> of item in the repository.</typeparam>
+            <param name="repository">The extended <see cref="T:Bowling.Domain.Abstract.IRepository`1">repository</see>.</param>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken">cancellation token</see> that can be used to cancel the operation.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1">task</see> containing the <see cref="T:System.Collections.Generic.IEnumerable`1">sequence</see>
+            of all <typeparamref name="T">items</typeparamref> in the repository.</returns>
+            <example>The following example demonstrates how to retrieve all items in a repository.
+            <code><![CDATA[
+            using Microsoft.DesignPatterns.Examples;
+            using System;
+            using System.Collections.Generic;
+            using System.Linq;
+            using System.Threading;
+            using System.Threading.Tasks;
+            
+            public async static void Main()
+            {
+                var repository = new MyRepository();
+                var cancellationToken = new CancellationToken();
+                
+                foreach ( var item in await repository.GetAllAsync( i => i.LastName == "Doe", cancellationToken ) )
+                    Console.WriteLine( item.ToString() );
+            }
+            ]]>
+            </code></example>
+        </member>
+        <member name="M:Bowling.Domain.Abstract.IRepositoryExtensions.FindByAsync``1(Bowling.Domain.Abstract.IRepository{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            Searches for items in the repository that match the specified predicate asynchronously.
+            </summary>
+            <typeparam name="T">The <see cref="T:System.Type">type</see> of item in the repository.</typeparam>
+            <param name="repository">The extended <see cref="T:Bowling.Domain.Abstract.IRepository`1">repository</see>.</param>
+            <param name="predicate">The <see cref="T:System.Linq.Expressions.Expression`1">expression</see> representing the predicate used to
+            match the requested <typeparamref name="T">items</typeparamref>.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1">task</see> containing the matched <see cref="T:System.Collections.Generic.IEnumerable`1">sequence</see>
+            of <typeparamref name="T">items</typeparamref>.</returns>
+            <example>The following example demonstrates how to find items in a repository.
+            <code><![CDATA[
+            using Microsoft.DesignPatterns.Examples;
+            using System;
+            using System.Collections.Generic;
+            using System.Linq;
+            using System.Threading;
+            using System.Threading.Tasks;
+            
+            public async static void Main()
+            {
+                var repository = new MyRepository();
+                var items = await repository.FindByAsync( i => i.LastName == "Doe" );
+                items.ForEach( i => Console.WriteLine( i.ToString() ) );
+            }
+            ]]>
+            </code></example>
+        </member>
+        <member name="M:Bowling.Domain.Abstract.IRepositoryExtensions.FindByAsync``1(Bowling.Domain.Abstract.IRepository{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Threading.CancellationToken)">
+            <summary>
+            Searches for items in the repository that match the specified predicate asynchronously.
+            </summary>
+            <typeparam name="T">The <see cref="T:System.Type">type</see> of item in the repository.</typeparam>
+            <param name="repository">The extended <see cref="T:Bowling.Domain.Abstract.IRepository`1">repository</see>.</param>
+            <param name="predicate">The <see cref="T:System.Linq.Expressions.Expression`1">expression</see> representing the predicate used to
+            match the requested <typeparamref name="T">items</typeparamref>.</param>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken">cancellation token</see> that can be used to cancel the operation.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1">task</see> containing the matched <see cref="T:System.Collections.Generic.IEnumerable`1">sequence</see>
+            of <typeparamref name="T">items</typeparamref>.</returns>
+            <example>The following example demonstrates how to find items in a repository.
+            <code><![CDATA[
+            using Microsoft.DesignPatterns.Examples;
+            using System;
+            using System.Collections.Generic;
+            using System.Linq;
+            using System.Threading;
+            using System.Threading.Tasks;
+            
+            public async static void Main()
+            {
+                var repository = new MyRepository();
+                var cancellationToken = new CancellationToken();
+                var items = await repository.FindByAsync( i => i.LastName == "Doe", cancellationToken );
+                items.ForEach( i => Console.WriteLine( i.ToString() ) );
+            }
+            ]]>
+            </code></example>
+        </member>
+        <member name="M:Bowling.Domain.Abstract.IRepositoryExtensions.GetSingleAsync``1(Bowling.Domain.Abstract.IRepository{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            Retrieves a single item in the repository matching the specified predicate asynchronously.
+            </summary>
+            <typeparam name="T">The <see cref="T:System.Type">type</see> of item in the repository.</typeparam>
+            <param name="repository">The extended <see cref="T:Bowling.Domain.Abstract.IRepository`1">repository</see>.</param>
+            <param name="predicate">The <see cref="T:System.Linq.Expressions.Expression`1">expression</see> representing the predicate used to
+            match the requested <typeparamref name="T">item</typeparamref>.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1">task</see> containing the matched <typeparamref name="T">item</typeparamref>
+            or null if no match was found.</returns>
+            <example>The following example demonstrates how to retrieve a single item from a repository.
+            <code><![CDATA[
+            using Microsoft.DesignPatterns.Examples;
+            using System;
+            using System.Collections.Generic;
+            using System.Linq;
+            using System.Threading;
+            using System.Threading.Tasks;
+            
+            public async static void Main()
+            {
+                var repository = new MyRepository();
+                var item = await repository.GetSingleAsync( i => i.Id == 1 );
+                Console.WriteLine( item.ToString() );
+            }
+            ]]>
+            </code></example>
+        </member>
+        <member name="M:Bowling.Domain.Abstract.IRepositoryExtensions.GetSingleAsync``1(Bowling.Domain.Abstract.IRepository{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Threading.CancellationToken)">
+            <summary>
+            Retrieves a single item in the repository matching the specified predicate asynchronously.
+            </summary>
+            <typeparam name="T">The <see cref="T:System.Type">type</see> of item in the repository.</typeparam>
+            <param name="repository">The extended <see cref="T:Bowling.Domain.Abstract.IRepository`1">repository</see>.</param>
+            <param name="predicate">The <see cref="T:System.Linq.Expressions.Expression`1">expression</see> representing the predicate used to
+            match the requested <typeparamref name="T">item</typeparamref>.</param>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken">cancellation token</see> that can be used to cancel the operation.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1">task</see> containing the matched <typeparamref name="T">item</typeparamref>
+            or null if no match was found.</returns>
+            <example>The following example demonstrates how to retrieve a single item from a repository.
+            <code><![CDATA[
+            using Microsoft.DesignPatterns.Examples;
+            using System;
+            using System.Collections.Generic;
+            using System.Linq;
+            using System.Threading;
+            using System.Threading.Tasks;
+            
+            public async static void Main()
+            {
+                var repository = new MyRepository();
+                var item = await repository.GetSingleAsync( i => i.Id == 1 );
+                Console.WriteLine( item.ToString() );
+            }
+            ]]>
+            </code></example>
         </member>
         <member name="T:Bowling.Domain.Concrete.EntityFramework.Mapping.AttendeeMap">
             <summary>

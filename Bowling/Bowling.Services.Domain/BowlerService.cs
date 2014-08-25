@@ -18,9 +18,9 @@ namespace Bowling.Services.Implementation
       //   this.teamService = teamService;
       }
 
-      public async Task< IEnumerable<Bowler>> GetBowlersAsync()
+      public Task< IEnumerable<Bowler>> GetBowlersAsync()
       { 
-         return await bowlers.GetAllAsync();
+         return bowlers.GetAllAsync();
       }
 
       public Task<Bowler> GetBowlerAsync(int id)
@@ -30,8 +30,9 @@ namespace Bowling.Services.Implementation
 
        public Task AddBowler(Bowler bowler)
       {
+
            bowlers.Add(bowler);
-           return bowlers.SaveChangesAsync();
+           return UnitOfWork.CommitAsync(); 
       }
 
       //public IQueryable<Match> GetMatchesForDate(DateTime date)

@@ -13,7 +13,7 @@ namespace Bowling.Domain.Concrete.EntityFramework.Mapping
         public FoodOptionMap()
         {
             this.ToTable("FoodOptions");
-            this.HasRequired(t => t.Name);
+            this.Property(t => t.Name).IsRequired();
         }
     }
 }

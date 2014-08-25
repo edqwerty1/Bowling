@@ -7,6 +7,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using StructureMap;
+using Bowling.Domain.Concrete.EntityFramework;
+
 
 namespace Bowling.Domain.Abstract
 {
@@ -26,6 +28,17 @@ namespace Bowling.Domain.Abstract
          }
       }
 
+      public static Task<int> CommitAsync()
+      {
+          IUnitOfWork unitOfWork = GetUnitOfWork();
+          if (unitOfWork != null)
+          {
+              return unitOfWork.CommitAsync();
+          }
+          return null;
+
+      }
+
       public static IUnitOfWork Current
       {
          get
@@ -34,7 +47,8 @@ namespace Bowling.Domain.Abstract
             if (unitOfWork == null)
             {
                // TODO replace with setter injection
-               unitOfWorkFactory = ObjectFactory.GetInstance<IUnitOfWorkFactory>();
+
+                unitOfWorkFactory = new EFUnitOfWorkFactory();
                unitOfWork = unitOfWorkFactory.Create();
                SaveUnitOfWork(unitOfWork);
             }

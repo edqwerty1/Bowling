@@ -8,6 +8,7 @@ using Bowling.Domain.Entities;
 using Bowling.Core;
 using Bowling.Domain.Abstract;
 using System.Data.Entity.Validation;
+using System.Threading.Tasks;
 namespace Bowling.Domain.Concrete.EntityFramework
 {
    /// <summary>
@@ -142,6 +143,24 @@ namespace Bowling.Domain.Concrete.EntityFramework
             //TODO: Message to be changed and globalised
             throw new Exception("Validation Failed", exception);
          }
+      }
+
+      /// <summary>
+      /// Calls the DbContext SaveChanges. If it fails validation, it will be handled with our own exception
+      /// </summary>
+      /// <returns>Error code</returns>
+      public override Task<int> SaveChangesAsync()
+      {
+          try
+          {
+              return base.SaveChangesAsync();
+          }
+          catch (DbEntityValidationException exception)
+          {
+              //Handle the exception with our own
+              //TODO: Message to be changed and globalised
+              throw new Exception("Validation Failed", exception);
+          }
       }
    }
 }

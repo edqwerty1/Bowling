@@ -17,19 +17,17 @@
 
 
 namespace Bowling.DependencyResolution {
-	using StructureMap;
-	using StructureMapRegistries;
+    using StructureMap;
+    using StructureMapRegistries;
 	
-	public static class IoC {
-		public static IContainer Initialize() {
-			return new Container(c =>
-			{
-				c.AddRegistry<DefaultRegistry>();
-				c.AddRegistry <DbContextRegistry>();
-				c.AddRegistry<UnitOfWorkRegistry>();
-				c.AddRegistry<RepositoryRegistry>();
-				c.AddRegistry<ServiceRegistry>();
-			});
-		}
-	}
+    public static class IoC {
+        public static IContainer Initialize() {
+            return new Container(c => { c.AddRegistry<DefaultRegistry>();
+            c.AddRegistry<DbContextRegistry>();
+            c.AddRegistry<RepositoryRegistry>();
+            c.AddRegistry<ServiceRegistry>();
+            c.AddRegistry<UnitOfWorkRegistry>();
+            });
+        }
+    }
 }

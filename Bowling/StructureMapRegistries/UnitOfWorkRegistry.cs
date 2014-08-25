@@ -18,7 +18,7 @@ namespace StructureMapRegistries
       /// </summary>
       public UnitOfWorkRegistry()
       {
-          For<IUnitOfWorkFactory>().Use<EFUnitOfWorkFactory>();
+          For<IUnitOfWorkFactory>().Singleton().Use<EFUnitOfWorkFactory>();
 
           //For<IUnitOfWorkFactoryProvider>().Use<UnitOfWorkFactoryProvider>()
           //                  .Ctor<Func<IEnumerable<IUnitOfWorkFactory>>>("providerFactory")

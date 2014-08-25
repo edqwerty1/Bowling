@@ -10,9 +10,13 @@ namespace Bowling.Domain.Concrete.EntityFramework
 {
    public class EFUnitOfWorkFactory : IUnitOfWorkFactory
    {
+       public EFUnitOfWorkFactory()
+       {
+
+       }
       public IUnitOfWork Create()
       {
-         Func<DataContext> dataContextFunc = () => ObjectFactory.GetInstance<DataContext>();
+         Func<IDbContext> dataContextFunc = () => new DataContext();
 
 
          return new EFUnitOfWork(dataContextFunc);

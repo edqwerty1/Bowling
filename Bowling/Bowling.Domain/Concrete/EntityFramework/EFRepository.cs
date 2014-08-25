@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Bowling.Domain.Abstract;
 using Bowling.Domain.Entities;
+using System.Diagnostics.CodeAnalysis;
+using System.Threading;
 namespace Bowling.Domain.Concrete.EntityFramework
 {
    /// <summary>
@@ -86,6 +88,36 @@ namespace Bowling.Domain.Concrete.EntityFramework
       {
          return this.DbSet.Local;
       }
+
+      /// <summary>
+      /// Retrieves all items in the repository satisfied by the specified query asynchronously.
+      /// </summary>
+      /// <param name="queryShaper">The <see cref="Func{T1,TResult}">function</see> that shapes the <see cref="IQueryable{T}">query</see> to execute.</param>
+      /// <param name="cancellationToken">The <see cref="CancellationToken">cancellation token</see> that can be used to cancel the operation.</param>
+      /// <returns>A <see cref="Task{T}">task</see> containing the retrieved <see cref="IEnumerable{T}">sequence</see> of <typeparamref name="T">items</typeparamref>.</returns>
+      [SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures", Justification = "Required for generics support.")]
+      public async Task<IEnumerable<T>> GetAsync(Func<IQueryable<T>, IQueryable<T>> queryShaper, CancellationToken cancellationToken)
+      {
+          var query = queryShaper(this.DbSet);
+          return await query.ToArrayAsync(cancellationToken);
+      }
+
+      /// <summary>
+      /// Retrieves a query result asynchronously.
+      /// </summary>
+      /// <typeparam name="TResult">The <see cref="Type">type</see> of result to retrieve.</typeparam>
+      /// <param name="queryShaper">The <see cref="Func{T,TResult}">function</see> that shapes the <see cref="IQueryable{T}">query</see> to execute.</param>
+      /// <param name="cancellationToken">The <see cref="CancellationToken">cancellation token</see> that can be used to cancel the operation.</param>
+      /// <returns>A <see cref="Task{T}">task</see> containing the <typeparamref name="TResult">result</typeparamref> of the operation.</returns>
+      [SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures", Justification = "Required for generics support.")]
+      public async Task<TResult> GetAsync<TResult>(Func<IQueryable<T>, TResult> queryShaper, CancellationToken cancellationToken)
+      {
+          var set = this.DbSet;
+          var query = queryShaper;
+          var factory = Task<TResult>.Factory;
+          return await factory.StartNew(() => query(set), cancellationToken);
+      }
+
 
       /// <summary>
       /// Search the dbSet with the given expression.  This takes into account valid partitions

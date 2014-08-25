@@ -79,14 +79,6 @@ namespace Bowling.Domain.Concrete.EntityFramework
          try
          {
 
-            //We cannot use a TransactionScope here as if changes have been made in more than one context, it promotes the transaction
-            //to a distributed transaction, which is much slower than a local one (and the web and database servers have to be configured
-            //correctly to use them).
-            // //TODO: Timeout is as long as 10 minutes for debugging purposes, and should be rethought for release builds.
-            //TimeSpan transactionTimeout = new TimeSpan(0, 10, 0);
-            //using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Required, 
-            //                    new TransactionOptions() {  IsolationLevel = IsolationLevel.ReadCommitted, Timeout = transactionTimeout }))
-            //{
             dataContext.SaveChanges();
             lockTable = new List<KeyValuePair<Type, int>>();
             //}
@@ -97,6 +89,24 @@ namespace Bowling.Domain.Concrete.EntityFramework
             throw new Exception("See InnerException for details", e);
          }
       }
+
+
+      /// <summary>
+      /// Commit the unit of work to the database
+      /// </summary>
+      public Task<int> CommitAsync()
+      {
+          try
+          {
+              return dataContext.SaveChangesAsync();
+          }
+          catch (DbUpdateException e)
+          {
+              //We want to be able to catch database exceptions in the services without having to refer to entity framework assemblies
+              throw new Exception("See InnerException for details", e);
+          }
+      }
+
 
       /// <summary>
       /// Dispose the unit of work and associated contexts

@@ -47,7 +47,7 @@ namespace Bowling.Domain.Concrete.EntityFramework
       /// </summary>
       /// <param name="managementContext">Management model only</param>
       public DataContext()
-         : base(ConfigurationManager.ConnectionStrings["Bowling"].ConnectionString)
+          : base(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString)
       {
          base.NamespaceDataContext = "Bowling.Domain.Concrete.EntityFramework.Mapping";
          base.Schema = "Domain";

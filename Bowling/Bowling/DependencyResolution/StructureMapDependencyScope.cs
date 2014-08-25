@@ -24,11 +24,12 @@ namespace Bowling.DependencyResolution {
     using Microsoft.Practices.ServiceLocation;
 
     using StructureMap;
+    using System.Web.Http.Dependencies;
 	
     /// <summary>
     /// The structure map dependency scope.
     /// </summary>
-    public class StructureMapDependencyScope : ServiceLocatorImplBase {
+    public class StructureMapDependencyScope : ServiceLocatorImplBase, IDependencyScope {
         #region Constants and Fields
 
         private const string NestedContainerKey = "Nested.Container.Key";
@@ -82,16 +83,14 @@ namespace Bowling.DependencyResolution {
         }
 
         public void Dispose() {
-            if (CurrentNestedContainer != null) {
-                CurrentNestedContainer.Dispose();
-            }
-
+            DisposeNestedContainer();
             Container.Dispose();
         }
 
         public void DisposeNestedContainer() {
             if (CurrentNestedContainer != null) {
                 CurrentNestedContainer.Dispose();
+				CurrentNestedContainer = null;
             }
         }
 

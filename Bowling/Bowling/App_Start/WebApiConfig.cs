@@ -31,7 +31,11 @@ namespace Bowling
                 defaults: new { id = RouteParameter.Optional }
             );
 
-
+            var json = config.Formatters.JsonFormatter;
+            json.SerializerSettings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.Objects;
+            json.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            json.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
+            config.Formatters.Remove(config.Formatters.XmlFormatter);
          //   config.Services.Replace(typeof(IHttpControllerActivator), new ServiceActivator(ApplicationContainer));
         }
     }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,6 +20,7 @@ namespace Bowling.Domain.Entities
         /// <summary>
         /// List of all the times the bowler was an attendee of an event
         /// </summary>
+    [DataMember(EmitDefaultValue = false)]
         public virtual ICollection<Attendee> Attendees { get; set; }
     }
 }

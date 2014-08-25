@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.Threading.Tasks;
 
 namespace Bowling.Domain.Concrete.EntityFramework
 {
@@ -14,6 +15,12 @@ namespace Bowling.Domain.Concrete.EntityFramework
       /// </summary>
       /// <returns>Error code</returns>
       int SaveChanges();
+
+      /// <summary>
+      /// Save the changes to all entities within the current context
+      /// </summary>
+      /// <returns>Error code</returns>
+      Task<int> SaveChangesAsync();
 
       /// <summary>
       /// Returns a DbSet for the current entity type

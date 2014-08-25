@@ -60,6 +60,9 @@ namespace Bowling.Domain.Entities
             FoodOption = foodOption;
         }
 
+        public Attendee()
+        { }
+
         public void Pay()
         {
             Paid = true;
