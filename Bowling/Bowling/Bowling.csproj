@@ -307,9 +307,12 @@
     <Content Include="Areas\Bowling\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Bowling\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Bowling\Views\Index\Index.cshtml" />
+    <Content Include="Scripts\angular-route.js" />
+    <Content Include="Scripts\angular-route.min.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\angular.min.js.map" />
+    <Content Include="Scripts\angular-route.min.js.map" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\angular-mocks.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -317,6 +320,8 @@
     <Content Include="Scripts\Bowling\bowlersController.js" />
     <Content Include="Scripts\Bowling\bowlerService.js" />
     <Content Include="Scripts\Bowling\bowlingApp.js" />
+    <Content Include="Scripts\Bowling\common.js" />
+    <Content Include="Scripts\Bowling\config.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
     <Content Include="Scripts\knockout-3.1.0.debug.js" />
