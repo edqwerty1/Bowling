@@ -9,6 +9,8 @@ using Bowling.Domain.Entities;
 using Bowling.Models;
 using Bowling.Services;
 using System.Collections.Generic;
+using Microsoft.AspNet.Identity;
+using System;
 
 namespace Bowling.Areas.WebAPI.Controllers
 {
@@ -35,6 +37,29 @@ namespace Bowling.Areas.WebAPI.Controllers
         public async Task<IEnumerable<Bowler>> GetBowlers()
         {
             return await bowlerService.GetBowlersAsync();
+        }
+
+        // GET: api/Bowlers/Me
+        /// <summary>
+        /// finds a bowler
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [ResponseType(typeof(Bowler))]
+        [Route("Me")]
+        [Authorize]
+        public async Task<IHttpActionResult> GetBowlerMe()
+        {
+            Guid userId; 
+            Guid.TryParse(User.Identity.GetUserId(), out userId);
+
+            Bowler bowler = await bowlerService.GetBowlerByUserAsync(userId);
+            if (bowler == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(bowler);
         }
 
         // GET: api/Bowlers/5

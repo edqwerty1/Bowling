@@ -268,6 +268,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Bowling\app\views\bowlers.html" />
+    <Content Include="Areas\Bowling\app\views\me.html" />
+    <Content Include="Scripts\Bowling\views\bowlers.html" />
+    <Content Include="Scripts\Bowling\views\me.html" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -318,10 +322,13 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\Bowling\bowlersController.js" />
-    <Content Include="Scripts\Bowling\bowlerService.js" />
+    <Content Include="Scripts\Bowling\config.route.js" />
+    <Content Include="Scripts\Bowling\services\authInterceptor.js" />
+    <Content Include="Scripts\Bowling\services\bowlerService.js" />
     <Content Include="Scripts\Bowling\bowlingApp.js" />
-    <Content Include="Scripts\Bowling\common.js" />
+    <Content Include="Scripts\Bowling\common\common.js" />
     <Content Include="Scripts\Bowling\config.js" />
+    <Content Include="Scripts\Bowling\services\directives.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
     <Content Include="Scripts\knockout-3.1.0.debug.js" />
@@ -386,6 +393,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Bowling\Models\" />
+    <Folder Include="Areas\Bowling\Views\Bowlers\" />
     <Folder Include="Areas\WebAPI\Models\" />
     <Folder Include="Areas\WebAPI\Views\Shared\" />
   </ItemGroup>

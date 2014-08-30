@@ -28,6 +28,11 @@ namespace Bowling.Services.Implementation
           return bowlers.GetSingleAsync(b => b.Id == id);
       }
 
+      public Task<Bowler> GetBowlerByUserAsync(Guid id)
+      {
+          return bowlers.GetSingleAsync(b => b.User == id);
+      }
+
        public Task AddBowler(Bowler bowler)
       {
 

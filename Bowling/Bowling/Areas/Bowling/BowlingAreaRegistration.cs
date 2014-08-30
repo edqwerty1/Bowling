@@ -2,22 +2,22 @@
 
 namespace Bowling.Areas.Bowling
 {
-    public class BowlingAreaRegistration : AreaRegistration 
+    public class BowlingAreaRegistration : AreaRegistration
     {
-        public override string AreaName 
+        public override string AreaName
         {
-            get 
+            get
             {
                 return "Bowling";
             }
         }
 
-        public override void RegisterArea(AreaRegistrationContext context) 
+        public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
                 "Bowling_default",
-                "Bowling/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                "Bowling/{*.}",
+                new { controller = "Index", action = "Index" }
             );
         }
     }

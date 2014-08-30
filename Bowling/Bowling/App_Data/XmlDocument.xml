@@ -487,6 +487,13 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Bowling.Areas.WebAPI.Controllers.BowlersController.GetBowlerMe">
+            <summary>
+            finds a bowler
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="M:Bowling.Areas.WebAPI.Controllers.BowlersController.GetBowler(System.Int32)">
             <summary>
             finds a bowler

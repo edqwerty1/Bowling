@@ -46,6 +46,23 @@ namespace Bowling.Domain.Entities
         /// </summary>
         public virtual ICollection<Result> Results { get; set; }
 
+        public int Result
+        {
+            get
+            {
+                if (Results == null)
+                {
+                    return 0;
+                }
+                int score = 0;
+                foreach (Result result in Results)
+                {
+                    score += result.TotalScore;
+                }
+                return score;
+            }
+        }
+
         /// <summary>
         /// only constructor
         /// </summary>

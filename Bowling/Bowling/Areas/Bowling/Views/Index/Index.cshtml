@@ -4,29 +4,11 @@
 }
 
 <h2>Index</h2>
-<div id="body" class="Bowling" ng-app="bowlingApp">
+<div id="body" class="Bowling" ng-app="bowlingApp" ng-controller="bowlersController as vm">
+    <div ng-view id="mainview">
+        
 
-    <div id="bowerlsList" ng-controller="bowlersController as vm">
-        <div id="bowlersList">
-            <table class="table table-condensed table-striped">
-                <thead>
-                    <tr>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Age</th>
-                        <th>Location</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr data-ng-repeat="p in vm.people">
-                        <td>{{p.name}}</td>
-                        <td>{{p.lastName}}</td>
-                        <td>{{p.age}}</td>
-                        <td>{{p.location}}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
     </div>
+    
 
 </div>

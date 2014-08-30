@@ -11,6 +11,8 @@ namespace Bowling.Services
        Task<IEnumerable<Bowler>> GetBowlersAsync();
        Task<Bowler> GetBowlerAsync(int id);
 
+       Task<Bowler> GetBowlerByUserAsync(Guid id);
+
        Task AddBowler(Bowler bowler);
       //IQueryable<Match> GetMatches();
       //IQueryable<Match> GetMatchesForDate(DateTime date);

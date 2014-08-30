@@ -12,12 +12,13 @@
         };
         vm.messageCount = 0;
         vm.people = [];
+        vm.me;
         vm.title = 'bowlersController';
 
         activate();
 
         function activate() {
-            var promises = [getMessageCount(), getPeople()];
+            var promises = [getMessageCount(), getPeople(), getMe()];
             common.activateController(promises, controllerId)
                 .then(function () { });
         }
@@ -35,6 +36,15 @@
             function (error) {
                 vm.error = error;
             });
+        }
+
+        function getMe() {
+            bowlerService.getMe().then(function (data) {
+                return vm.me = data;
+            },
+           function (error) {
+               vm.error = error;
+           });
         }
     }
 })();
